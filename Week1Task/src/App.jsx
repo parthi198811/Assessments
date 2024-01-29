@@ -1,17 +1,14 @@
-import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
+
 import {NavigationContainer} from '@react-navigation/native';
+import Navigation from './screens/Navigation';
 
 const App = () => {
   return (
     <NavigationContainer>
-      <View>
-        <Text>App</Text>
-      </View>
+      <Navigation />
     </NavigationContainer>
   );
 };
 
 export default App;
-
-const styles = StyleSheet.create({});
