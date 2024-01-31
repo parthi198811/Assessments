@@ -9,7 +9,11 @@ const DetailsScreen = ({route}) => {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.imagecontainer}>
-        <Image style={styles.image} source={{uri: item.image}} />
+        <Image
+          style={styles.image}
+          resizeMode="contain"
+          source={{uri: item.image}}
+        />
       </View>
       <View style={styles.headercontainer}>
         <Text style={styles.headertext}>{item.name}</Text>
