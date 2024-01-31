@@ -1,14 +1,30 @@
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import React from 'react';
+import React, {useState} from 'react';
 
 const ItemComponent = ({item, handleItemPress}) => {
+  const [imageError, setImageError] = useState(false);
+
   return (
     <View style={styles.container}>
       <TouchableOpacity
         style={styles.listItem}
         onPress={() => handleItemPress(item)}>
         <View style={styles.itemContainer}>
-          <Image style={styles.itemimage} source={{uri: item.image}} />
+          <Image
+            style={
+              imageError
+                ? [styles.itemimage, {tintColor: 'white'}]
+                : styles.itemimage
+            }
+            onError={() => {
+              setImageError(true);
+            }}
+            source={
+              imageError
+                ? require('../../resources/default.png')
+                : {uri: item.image}
+            }
+          />
           <Text style={styles.itemtext}>{item.name}</Text>
           <Image
             style={styles.itemimage}
@@ -34,6 +50,10 @@ const styles = StyleSheet.create({
   },
   listItem: {justifyContent: 'center'},
   itemContainer: {flexDirection: 'row'},
-  itemimage: {width: 30, height: 30, justifyContent: 'flex-start'},
+  itemimage: {
+    width: 30,
+    height: 30,
+    justifyContent: 'flex-start',
+  },
   itemtext: {fontSize: 25, color: 'white', marginHorizontal: 10, flex: 1},
 });
