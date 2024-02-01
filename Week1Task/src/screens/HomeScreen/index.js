@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 
 import {
   View,
@@ -8,6 +8,7 @@ import {
   Modal,
   TextInput,
   Alert,
+  Image,
 } from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import styles from './styles';
@@ -16,8 +17,10 @@ import NewRecordScreen from '../NewRecordScreen';
 import getData from '../../constants';
 
 const HomeScreen = props => {
-  const {navigation} = props;
+  const {navigation, route} = props;
   const [modalVisible, setModalVisible] = useState(false);
+
+  const params = route.params;
 
   const updateList = newData => {
     newData.id = listData.length + 1;
@@ -25,6 +28,16 @@ const HomeScreen = props => {
   };
 
   const [listData, setListData] = useState(getData());
+
+  useEffect(() => {
+    if (params?.item_id) {
+      const newData = listData.filter(obj => obj.id != params.item_id);
+      setListData(newData);
+
+      Alert.alert('Record deleted successfully.');
+      params.item_id = '';
+    }
+  }, [params?.item_id]);
 
   return (
     <SafeAreaView style={styles.container}>
@@ -39,7 +52,9 @@ const HomeScreen = props => {
               <ItemComponent
                 item={item}
                 handleItemPress={item => {
-                  navigation.navigate('Details', item);
+                  navigation.navigate('Details', {
+                    item: item,
+                  });
                 }}
               />
             );
@@ -47,13 +62,19 @@ const HomeScreen = props => {
           keyExtractor={item => item.id}
         />
       </View>
-      <View style={styles.buttonContainer}>
+      <View style={styles.bottomContainer}>
         <TouchableOpacity
           style={styles.button}
           onPress={() => {
             setModalVisible(true);
           }}>
-          <Text style={[styles.buttonText, {color: 'black'}]}>New Record</Text>
+          <Image
+            style={styles.icon}
+            source={{
+              uri: 'https://static-00.iconduck.com/assets.00/plus-circle-icon-512x512-qd3dnhjf.png',
+            }}
+          />
+          <Text style={styles.buttonText}>New Record</Text>
         </TouchableOpacity>
       </View>
 

@@ -28,6 +28,30 @@ const styles = StyleSheet.create({
     color: 'white',
   },
   datacontainer: {flex: 1, padding: 10},
+  bottomContainer: {
+    height: 50,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  button: {
+    borderWidth: 1,
+    borderRadius: 5,
+    padding: 8,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'orange',
+    flexDirection: 'row',
+  },
+  buttonText: {
+    fontSize: 15,
+    fontWeight: 'bold',
+    color: 'black',
+  },
+  icon: {
+    margin: 3,
+    width: 20,
+    height: 20,
+  },
 });
 
 export default styles;
