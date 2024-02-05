@@ -63,7 +63,6 @@ const LoginScreen = ({navigation}) => {
               <TextInput
                 ref={inputPasswordRef}
                 style={styles.textinput}
-                passwordRules={'test'}
                 placeholder="Password"
                 secureTextEntry={true}
                 onChangeText={value => {
