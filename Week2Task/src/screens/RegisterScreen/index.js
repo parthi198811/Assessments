@@ -40,6 +40,34 @@ const RegisterScreen = ({navigation}) => {
     }
   }, [name, mobile, email, username, password, cpassword]);
 
+  const handleRegister = () => {
+    if (cpassword != '' && password !== cpassword) {
+      setErrorMessage('Password and Confirm Password is not similar.');
+    } else {
+      setErrorMessage('');
+      if (!Data.checkUsername(username)) {
+        Data.addUser({
+          name: name,
+          mobile: mobile,
+          email: email,
+          username: username,
+          password: password,
+        });
+
+        Alert.alert('You have been registered successfully.', '', [
+          {
+            text: 'OK',
+            onPress: () => {
+              navigation.navigate('Login');
+            },
+          },
+        ]);
+      } else {
+        Alert.alert('Username is already exists.');
+      }
+    }
+  };
+
   return (
     <ScrollView style={styles.container}>
       <View style={styles.mainContainer}>
@@ -129,35 +157,7 @@ const RegisterScreen = ({navigation}) => {
           <TouchableOpacity
             style={[styles.button, {opacity: opacity}]}
             disabled={disabled}
-            onPress={() => {
-              if (cpassword != '' && password !== cpassword) {
-                setErrorMessage(
-                  'Password and Confirm Password is not similar.',
-                );
-              } else {
-                setErrorMessage('');
-                if (!Data.checkUsername(username)) {
-                  Data.addUser({
-                    name: name,
-                    mobile: mobile,
-                    email: email,
-                    username: username,
-                    password: password,
-                  });
-
-                  Alert.alert('You have been registered successfully.', '', [
-                    {
-                      text: 'OK',
-                      onPress: () => {
-                        navigation.navigate('Login');
-                      },
-                    },
-                  ]);
-                } else {
-                  Alert.alert('Username is already exists.');
-                }
-              }
-            }}>
+            onPress={handleRegister}>
             <Text style={styles.buttonText}>Register</Text>
           </TouchableOpacity>
           <View style={styles.bottomContainer}>
