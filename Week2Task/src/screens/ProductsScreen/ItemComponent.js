@@ -1,5 +1,5 @@
 import {Image, StyleSheet, Text, View} from 'react-native';
-import React from 'react';
+import React, {memo} from 'react';
 
 const ItemComponent = props => {
   const {item} = props;
@@ -23,7 +23,7 @@ const ItemComponent = props => {
   );
 };
 
-export default ItemComponent;
+export default memo(ItemComponent);
 
 const styles = StyleSheet.create({
   container: {

@@ -1,21 +1,17 @@
 import {Image, StyleSheet, Text, TouchableOpacity} from 'react-native';
 import React from 'react';
+import Icon from 'react-native-vector-icons/MaterialIcons';
+import {BASE_COLOR} from '../../config/Constants';
 
 const BoxComponent = props => {
-  const {name, imageUrl, navigateMenu} = props;
+  const {name, icon_name, navigateMenu} = props;
   return (
     <TouchableOpacity
       style={styles.container}
       onPress={() => {
         navigateMenu(name);
       }}>
-      <Image
-        style={styles.image}
-        resizeMode="contain"
-        source={{
-          uri: imageUrl,
-        }}
-      />
+      <Icon name={icon_name} color={'black'} size={50} />
       <Text style={styles.text}>{name}</Text>
     </TouchableOpacity>
   );
@@ -29,7 +25,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderWidth: 4,
     borderRadius: 10,
-    borderColor: '#4287f5',
+    borderColor: BASE_COLOR,
     margin: 10,
     padding: 10,
     height: 120,

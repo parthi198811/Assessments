@@ -1,13 +1,15 @@
 import {StyleSheet} from 'react-native';
+import {BASE_COLOR} from '../../config/Constants';
 
 const styles = StyleSheet.create({
   container: {flex: 1},
+  drawer: {marginRight: 10},
   headerContainer: {
     height: 50,
     padding: 10,
     flexDirection: 'row',
     justifyContent: 'center',
-    backgroundColor: '#4287f5',
+    backgroundColor: BASE_COLOR,
   },
   leftContainer: {flexDirection: 'row', flex: 1},
   rightContainer: {flexDirection: 'row'},
@@ -16,12 +18,6 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     padding: 2,
     color: 'white',
-  },
-  headerButton: {
-    width: 30,
-    height: 30,
-    marginHorizontal: 5,
-    tintColor: 'white',
   },
   banner: {width: '100%', height: 200},
   contentContainer: {

@@ -6,6 +6,7 @@ import {
   ScrollView,
 } from 'react-native';
 import React, {useRef, useState} from 'react';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {useUserContext} from '../../contexts/UserContext';
 import styles from './styles';
 import Data from '../../config/Data';
@@ -72,8 +73,11 @@ const LoginScreen = ({navigation}) => {
               />
             </View>
           </View>
-          <TouchableOpacity style={styles.button} onPress={handleLogin}>
-            <Text style={styles.buttonText}>Login</Text>
+          <TouchableOpacity
+            style={[styles.button, {flexDirection: 'row'}]}
+            onPress={handleLogin}>
+            <Icon name="login" color={'white'} size={30} />
+            <Text style={[styles.buttonText, {marginLeft: 10}]}>Login</Text>
           </TouchableOpacity>
         </View>
         <View style={styles.bottomContainer}>

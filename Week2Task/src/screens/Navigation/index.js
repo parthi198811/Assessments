@@ -39,16 +39,8 @@ const Navigation = () => {
           component={DashboardScreen}
           options={{headerShown: false}}
         />
-        <Stack.Screen
-          name="Products"
-          component={ProductsScreen}
-          options={{headerShown: true}}
-        />
-        <Stack.Screen
-          name="Profile"
-          component={ProfileScreen}
-          options={{headerShown: true}}
-        />
+        <Stack.Screen name="Products" component={ProductsScreen} />
+        <Stack.Screen name="Profile" component={ProfileScreen} />
       </Stack.Group>
     );
   };

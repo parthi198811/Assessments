@@ -1,41 +1,18 @@
-import {
-  View,
-  Text,
-  SafeAreaView,
-  TouchableOpacity,
-  Image,
-  ScrollView,
-  Alert,
-} from 'react-native';
 import React from 'react';
+import {createDrawerNavigator} from '@react-navigation/drawer';
+import Header from './Header';
 import {useUserContext} from '../../contexts/UserContext';
-import styles from './styles';
-import BoxComponent from './BoxComponent';
-import {
-  BANNER_IMAGE_URL,
-  LOGOUT_ICON_URL,
-  PRODUCTS_IMAGE_URL,
-  PROFILE_IMAGE_URL,
-} from '../../config/Constants';
+import DashboardTabs from './DashboardTabs';
+import CustomDrawer from './CustomDrawer';
+import {Alert} from 'react-native';
+import IconM from 'react-native-vector-icons/dist/MaterialCommunityIcons';
+import DashboardHome from './DashboardHome';
 
-const DashboardScreen = ({navigation}) => {
+const Drawer = createDrawerNavigator();
+
+const DashboardScreen = () => {
   const {state, actions} = useUserContext();
   const loggedInUser = state.loggedInUser;
-
-  const dashboardMenu = [
-    {
-      name: 'Products',
-      imageUrl: PRODUCTS_IMAGE_URL,
-    },
-    {
-      name: 'Profile',
-      imageUrl: PROFILE_IMAGE_URL,
-    },
-  ];
-
-  const navigateMenu = name => {
-    navigation.navigate(name);
-  };
 
   const handleLogout = () => {
     Alert.alert('Are you sure you want to logout?', '', [
@@ -50,46 +27,52 @@ const DashboardScreen = ({navigation}) => {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
-      <View style={styles.headerContainer}>
-        <View style={styles.leftContainer}>
-          <Text style={styles.headerText}>Hi,</Text>
-          <Text style={[styles.headerText, {flex: 1}]}>
-            {loggedInUser.name}
-          </Text>
-        </View>
-        <View style={styles.rightContainer}>
-          <TouchableOpacity onPress={handleLogout}>
-            <Image
-              style={styles.headerButton}
-              source={{
-                uri: LOGOUT_ICON_URL,
-              }}
+    <Drawer.Navigator
+      screenOptions={{
+        drawerType: 'front',
+        drawerStyle: {
+          backgroundColor: 'white',
+          width: 240,
+        },
+        drawerLabelStyle: {fontSize: 18},
+        header: ({navigation}) => {
+          return (
+            <Header
+              navigation={navigation}
+              name={loggedInUser.name}
+              logout={handleLogout}
             />
-          </TouchableOpacity>
-        </View>
-      </View>
-      <Image
-        style={styles.banner}
-        resizeMode="cover"
-        source={{
-          uri: BANNER_IMAGE_URL,
+          );
+        },
+      }}
+      drawerContent={props => (
+        <CustomDrawer
+          {...props}
+          name={loggedInUser.name}
+          logout={handleLogout}
+        />
+      )}>
+      <Drawer.Screen
+        name="Dashboard"
+        component={DashboardTabs}
+        options={{
+          headerShown: true,
+          drawerIcon: () => {
+            return <IconM name="view-dashboard" size={25} />;
+          },
         }}
       />
-      <ScrollView>
-        <View style={styles.contentContainer}>
-          {dashboardMenu.map(obj => {
-            return (
-              <BoxComponent
-                name={obj.name}
-                imageUrl={obj.imageUrl}
-                navigateMenu={navigateMenu}
-              />
-            );
-          })}
-        </View>
-      </ScrollView>
-    </SafeAreaView>
+      <Drawer.Screen
+        name="Old Dashboard"
+        component={DashboardHome}
+        options={{
+          headerShown: true,
+          drawerIcon: () => {
+            return <IconM name="view-dashboard" size={25} />;
+          },
+        }}
+      />
+    </Drawer.Navigator>
   );
 };
 
