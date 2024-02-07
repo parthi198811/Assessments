@@ -1,4 +1,4 @@
-import {Image, StyleSheet, Text, TouchableOpacity} from 'react-native';
+import {StyleSheet, Text, TouchableOpacity} from 'react-native';
 import React from 'react';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import {BASE_COLOR} from '../../config/Constants';
@@ -38,6 +38,5 @@ const styles = StyleSheet.create({
       width: 1,
     },
   },
-  image: {width: '100%', height: 50, flex: 1},
   text: {fontSize: 18, fontWeight: 'bold', paddingTop: 5},
 });
