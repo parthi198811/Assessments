@@ -5,11 +5,12 @@ import {
   TouchableOpacity,
   ScrollView,
 } from 'react-native';
-import React, {useRef, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {useUserContext} from '@contexts/UserContext';
-import Data from '@constants/Data';
 import styles from './styles';
+import PersistentHelper from '@helpers/PersistentHelper';
+import {USERS_KEY} from '../../constants';
 
 const LoginScreen = ({navigation}) => {
   const {actions} = useUserContext();
@@ -19,8 +20,23 @@ const LoginScreen = ({navigation}) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
+  const [users, setUsers] = useState([]);
+
   const inputUsernameRef = useRef(null);
   const inputPasswordRef = useRef(null);
+
+  useEffect(() => {
+    PersistentHelper.setObject(USERS_KEY, [
+      {
+        id: 1,
+        name: 'Parthi',
+        mobile: '1234567890',
+        email: 'test@test.com',
+        username: 'parthi',
+        password: 'parthi',
+      },
+    ]);
+  }, []);
 
   const clearInputs = () => {
     setErrorMessage('');
@@ -30,9 +46,20 @@ const LoginScreen = ({navigation}) => {
   };
 
   const handleLogin = () => {
-    const userObj = Data.getUser(username, password);
-    if (userObj != undefined) {
-      actions.setLoggedInUser(userObj);
+    PersistentHelper.getObject(USERS_KEY).then(data => {
+      if (data !== null) setUsers(data);
+    });
+
+    if (users.length != 0) {
+      const userObj = users.find(obj => {
+        return obj.username == username && obj.password == password;
+      });
+
+      if (userObj != undefined) {
+        actions.setLoggedInUser(userObj);
+      } else {
+        setErrorMessage('Username or Password is incorrect.');
+      }
     } else {
       setErrorMessage('Username or Password is incorrect.');
     }

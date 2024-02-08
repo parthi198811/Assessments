@@ -1,14 +1,16 @@
 import {
   View,
   Text,
+  Button,
   TextInput,
   TouchableOpacity,
   Alert,
   ScrollView,
 } from 'react-native';
-import React, {useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
+import PersistentHelper from '@helpers/PersistentHelper';
 import styles from './styles';
-import Data from '@constants/Data';
+import {USERS_KEY} from '../../constants';
 
 const RegisterScreen = ({navigation}) => {
   const [disabled, setDisabled] = useState(true);
@@ -22,6 +24,14 @@ const RegisterScreen = ({navigation}) => {
   const [cpassword, setCPassword] = useState('');
 
   const [errorMessage, setErrorMessage] = useState('');
+
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    PersistentHelper.getObject(USERS_KEY).then(data => {
+      if (data !== null) setUsers(data);
+    });
+  }, []);
 
   useEffect(() => {
     if (
@@ -40,13 +50,24 @@ const RegisterScreen = ({navigation}) => {
     }
   }, [name, mobile, email, username, password, cpassword]);
 
+  const checkUsername = useCallback(() => {
+    if (users.length > 0) {
+      const index = users.findIndex(obj => {
+        return obj.username == username;
+      });
+
+      return index != -1 ? true : false;
+    }
+    return false;
+  });
+
   const handleRegister = () => {
     if (cpassword != '' && password !== cpassword) {
       setErrorMessage('Password and Confirm Password is not similar.');
     } else {
       setErrorMessage('');
-      if (!Data.checkUsername(username)) {
-        Data.addUser({
+      if (!checkUsername(username)) {
+        PersistentHelper.appendObject(USERS_KEY, {
           name: name,
           mobile: mobile,
           email: email,
@@ -170,6 +191,12 @@ const RegisterScreen = ({navigation}) => {
             </TouchableOpacity>
           </View>
         </View>
+        <Button
+          title="Clear Storage"
+          onPress={() => {
+            PersistentHelper.clear();
+          }}
+        />
       </View>
     </ScrollView>
   );

@@ -14,3 +14,5 @@ export const PRODUCT_ICON_URL =
   'https://www.vipexon.com/2201-large_default/samsung-galaxy-z-fold-4-dummy-phone-display-model.jpg';
 
 export const BASE_COLOR = '#4287f5';
+
+export const USERS_KEY = 'users';
