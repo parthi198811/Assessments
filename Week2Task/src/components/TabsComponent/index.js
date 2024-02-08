@@ -1,8 +1,8 @@
 import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/dist/FontAwesome6';
-import {ProductsScreen, ProfileScreen} from '..';
-import {BASE_COLOR} from '../../config/Constants';
+import {ProductsScreen, ProfileScreen} from '@screens';
+import {BASE_COLOR} from '@constants';
 
 const Tab = createBottomTabNavigator();
 

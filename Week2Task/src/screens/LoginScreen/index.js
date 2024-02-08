@@ -7,9 +7,9 @@ import {
 } from 'react-native';
 import React, {useRef, useState} from 'react';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import {useUserContext} from '../../contexts/UserContext';
+import {useUserContext} from '@contexts/UserContext';
+import Data from '@constants/Data';
 import styles from './styles';
-import Data from '../../config/Data';
 
 const LoginScreen = ({navigation}) => {
   const {actions} = useUserContext();

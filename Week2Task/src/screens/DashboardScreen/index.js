@@ -1,12 +1,12 @@
 import React from 'react';
 import {createDrawerNavigator} from '@react-navigation/drawer';
-import Header from './Header';
-import {useUserContext} from '../../contexts/UserContext';
-import DashboardTabs from './DashboardTabs';
-import CustomDrawer from './CustomDrawer';
-import {Alert} from 'react-native';
+import {Alert, TouchableOpacity, View} from 'react-native';
 import IconM from 'react-native-vector-icons/dist/MaterialCommunityIcons';
-import DashboardHome from './DashboardHome';
+import DashboardTabs from '@components/TabsComponent';
+import CustomDrawer from '@components/CustomDrawer';
+import {useUserContext} from '@contexts/UserContext';
+import {BASE_COLOR} from '@constants';
+import styles from './styles';
 
 const Drawer = createDrawerNavigator();
 
@@ -30,18 +30,15 @@ const DashboardScreen = () => {
     <Drawer.Navigator
       screenOptions={{
         drawerType: 'front',
-        drawerStyle: {
-          backgroundColor: 'white',
-          width: 240,
-        },
-        drawerLabelStyle: {fontSize: 18},
-        header: ({navigation}) => {
+        drawerStyle: styles.drawerStyle,
+        drawerLabelStyle: styles.drawerLabelStyle,
+        headerRight: () => {
           return (
-            <Header
-              navigation={navigation}
-              name={loggedInUser.name}
-              logout={handleLogout}
-            />
+            <View>
+              <TouchableOpacity onPress={handleLogout}>
+                <IconM name="logout" color={BASE_COLOR} size={30} />
+              </TouchableOpacity>
+            </View>
           );
         },
       }}
@@ -55,16 +52,6 @@ const DashboardScreen = () => {
       <Drawer.Screen
         name="Dashboard"
         component={DashboardTabs}
-        options={{
-          headerShown: true,
-          drawerIcon: () => {
-            return <IconM name="view-dashboard" size={25} />;
-          },
-        }}
-      />
-      <Drawer.Screen
-        name="Old Dashboard"
-        component={DashboardHome}
         options={{
           headerShown: true,
           drawerIcon: () => {

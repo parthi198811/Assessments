@@ -1,5 +1,5 @@
 import {create} from 'apisauce';
-import {BASE_URL, HEADERS} from '../config/Constants';
+import {BASE_URL, HEADERS} from '@constants';
 
 const api = create({baseURL: BASE_URL, headers: HEADERS});
 

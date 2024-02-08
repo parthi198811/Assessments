@@ -1,9 +1,9 @@
 import {View, FlatList} from 'react-native';
 import React, {useEffect, useState} from 'react';
-import ApiHelper from '../../helpers/ApiHelper';
-import {PRODUCTS_URL, PRODUCT_ICON_URL} from '../../config/Constants';
+import ApiHelper from '@helpers/ApiHelper';
+import {PRODUCTS_URL, PRODUCT_ICON_URL} from '@constants';
+import ItemComponent from '@components/ItemComponent';
 import styles from './styles';
-import ItemComponent from './ItemComponent';
 
 const ProductsScreen = () => {
   const [productsData, setProductsData] = useState([]);

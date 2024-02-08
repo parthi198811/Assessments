@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 import React, {useEffect, useState} from 'react';
 import styles from './styles';
-import Data from '../../config/Data';
+import Data from '@constants/Data';
 
 const RegisterScreen = ({navigation}) => {
   const [disabled, setDisabled] = useState(true);

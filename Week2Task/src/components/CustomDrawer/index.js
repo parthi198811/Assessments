@@ -2,6 +2,7 @@ import {SafeAreaView, ScrollView, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import {DrawerItem, DrawerItemList} from '@react-navigation/drawer';
 import Icon from 'react-native-vector-icons/dist/MaterialCommunityIcons';
+import styles from './styles';
 
 const CustomDrawer = props => {
   const {name, logout} = props;
@@ -32,30 +33,3 @@ const CustomDrawer = props => {
 };
 
 export default CustomDrawer;
-
-const styles = StyleSheet.create({
-  container: {flex: 1},
-  headerContainer: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    height: 100,
-    backgroundColor: 'orange',
-    padding: '10',
-  },
-  headerText: {
-    fontSize: 15,
-    fontWeight: 'bold',
-  },
-  contentContainer: {flex: 1},
-  footerContainer: {
-    justifyContent: 'flex-end',
-    alignItems: 'center',
-    padding: 10,
-    backgroundColor: 'orange',
-  },
-  footerText: {
-    fontSize: 15,
-    fontWeight: 'bold',
-  },
-  drawerItem: {fontSize: 18},
-});

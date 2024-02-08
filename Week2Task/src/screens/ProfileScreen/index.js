@@ -2,7 +2,7 @@ import {View, Text} from 'react-native';
 import React from 'react';
 import Icon from 'react-native-vector-icons/dist/FontAwesome6';
 import IconM from 'react-native-vector-icons/dist/MaterialIcons';
-import {useUserContext} from '../../contexts/UserContext';
+import {useUserContext} from '@contexts/UserContext';
 import styles from './styles';
 
 const ProfileScreen = () => {

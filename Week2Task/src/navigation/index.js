@@ -6,8 +6,8 @@ import {
   DashboardScreen,
   ProductsScreen,
   ProfileScreen,
-} from '..';
-import {UserContextProvider} from '../../contexts/UserContext';
+} from '@screens';
+import {UserContextProvider} from '@contexts/UserContext';
 
 const Stack = createNativeStackNavigator();
 
