@@ -20,8 +20,6 @@ const LoginScreen = ({navigation}) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
-  const [users, setUsers] = useState([]);
-
   const inputUsernameRef = useRef(null);
   const inputPasswordRef = useRef(null);
 
@@ -47,23 +45,23 @@ const LoginScreen = ({navigation}) => {
   };
 
   const handleLogin = () => {
-    PersistentHelper.getObject(USERS_KEY).then(data => {
-      if (data !== null) setUsers(data);
-    });
+    console.log('handleLogin');
+    PersistentHelper.getObject(USERS_KEY).then(users => {
+      if (users) {
+        const userObj = users.find(obj => {
+          return obj.username == username && obj.password == password;
+        });
 
-    if (users.length != 0) {
-      const userObj = users.find(obj => {
-        return obj.username == username && obj.password == password;
-      });
-
-      if (userObj != undefined) {
-        actions.setLoggedInUser(userObj);
+        if (userObj != undefined) {
+          actions.setLoggedInUser(userObj);
+        } else {
+          setErrorMessage('Username or Password is incorrect.');
+        }
       } else {
         setErrorMessage('Username or Password is incorrect.');
       }
-    } else {
-      setErrorMessage('Username or Password is incorrect.');
-    }
+      if (data !== null) setUsers(data);
+    });
   };
 
   return (
