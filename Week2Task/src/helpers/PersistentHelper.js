@@ -21,7 +21,7 @@ class PersistentHelper {
 
   appendObject = (key, object) => {
     this.getObject(key).then(data => {
-      if (data !== null) {
+      if (data) {
         object.id = data.length + 1;
         const newObject = [...data, object];
 
