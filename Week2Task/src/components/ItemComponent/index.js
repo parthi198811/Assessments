@@ -1,8 +1,16 @@
-import {Image, StyleSheet, Text, View} from 'react-native';
+import {Image, Text, TouchableOpacity, View} from 'react-native';
 import React, {memo} from 'react';
+import {useDispatch} from 'react-redux';
+import Icon from 'react-native-vector-icons/dist/FontAwesome6';
+import styles from './styles';
+import {BASE_COLOR} from '@constants';
+import {addToCart} from '@redux/features/CartSlice';
+import {getItemQuantity} from '@redux/features/CartSlice';
 
-const ItemComponent = props => {
-  const {item} = props;
+const ItemComponent = ({item}) => {
+  const dispatch = useDispatch();
+  const itemQty = getItemQuantity(item.id);
+
   return (
     <View style={styles.container}>
       <Image
@@ -17,43 +25,31 @@ const ItemComponent = props => {
         <Text style={styles.text2}>{item.inStock ? 'In Stock' : ''}</Text>
         <Text style={styles.text1}>{item.display}</Text>
         <Text style={styles.text1}>{item.storageOptions.join(' | ')}</Text>
-        <Text style={styles.text3}>{'£' + item.basePrice}</Text>
+        <View style={styles.bottomContainer}>
+          <Text style={styles.text3}>{'£' + item.basePrice}</Text>
+          <TouchableOpacity
+            onPress={() => {
+              dispatch(addToCart(item));
+            }}>
+            {itemQty != 0 && (
+              <View
+                style={{
+                  backgroundColor: 'red',
+                  borderRadius: 10,
+                  alignItems: 'center',
+                  width: 30,
+                  bottom: -3,
+                  right: -18,
+                }}>
+                <Text style={{color: '#fff'}}>{itemQty}</Text>
+              </View>
+            )}
+            <Icon name="cart-plus" color={BASE_COLOR} size={35} />
+          </TouchableOpacity>
+        </View>
       </View>
     </View>
   );
 };
 
 export default memo(ItemComponent);
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'flex-start',
-    flexDirection: 'row',
-    marginHorizontal: 8,
-    marginVertical: 5,
-    padding: 10,
-    height: 150,
-    borderRadius: 2,
-    backgroundColor: 'white',
-    shadowRadius: 2,
-    shadowOpacity: 0.5,
-    shadowOffset: {
-      height: 1,
-      width: 1,
-    },
-  },
-  image: {
-    width: 100,
-    height: 100,
-  },
-  textContainer: {
-    justifyContent: 'flex-start',
-    width: '73%',
-    justifyContent: 'space-evenly',
-  },
-  title: {fontSize: 18, fontWeight: 'bold'},
-  text1: {fontSize: 15},
-  text2: {fontSize: 15, fontWeight: 'bold', color: 'green'},
-  text3: {fontSize: 20, fontWeight: 'bold'},
-});

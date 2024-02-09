@@ -45,7 +45,6 @@ const LoginScreen = ({navigation}) => {
   };
 
   const handleLogin = () => {
-    console.log('handleLogin');
     PersistentHelper.getObject(USERS_KEY).then(users => {
       if (users) {
         const userObj = users.find(obj => {
@@ -60,7 +59,6 @@ const LoginScreen = ({navigation}) => {
       } else {
         setErrorMessage('Username or Password is incorrect.');
       }
-      if (data !== null) setUsers(data);
     });
   };
 

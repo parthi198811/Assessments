@@ -1,12 +1,15 @@
 import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/dist/FontAwesome6';
-import {ProductsScreen, ProfileScreen} from '@screens';
+import {ProductsScreen, ProfileScreen, CartScreen} from '@screens';
 import {BASE_COLOR} from '@constants';
+import {useSelector} from 'react-redux';
 
 const Tab = createBottomTabNavigator();
 
 const DashboardTabs = () => {
+  const totalItems = useSelector(state => state.cart.totalItems);
+
   return (
     <Tab.Navigator
       screenOptions={{
@@ -16,7 +19,7 @@ const DashboardTabs = () => {
           height: 50,
         },
         tabBarActiveTintColor: 'orange',
-        tabBarInactiveTintColor: 'black',
+        tabBarInactiveTintColor: 'white',
       }}>
       <Tab.Screen
         name="Products"
@@ -25,6 +28,17 @@ const DashboardTabs = () => {
           headerShown: false,
           tabBarLabel: 'Products',
           tabBarIcon: ({color}) => <Icon name="list" color={color} size={30} />,
+        }}
+      />
+      <Tab.Screen
+        name="Cart"
+        component={CartScreen}
+        options={{
+          headerShown: false,
+          tabBarBadge: totalItems,
+          tabBarIcon: ({color}) => (
+            <Icon name="cart-shopping" color={color} size={35} />
+          ),
         }}
       />
       <Tab.Screen
