@@ -26,6 +26,7 @@ const LoginScreen = ({navigation}) => {
   const inputPasswordRef = useRef(null);
 
   useEffect(() => {
+    PersistentHelper.clear();
     PersistentHelper.setObject(USERS_KEY, [
       {
         id: 1,

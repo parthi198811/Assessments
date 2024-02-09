@@ -191,12 +191,6 @@ const RegisterScreen = ({navigation}) => {
             </TouchableOpacity>
           </View>
         </View>
-        <Button
-          title="Clear Storage"
-          onPress={() => {
-            PersistentHelper.clear();
-          }}
-        />
       </View>
     </ScrollView>
   );
