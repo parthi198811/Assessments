@@ -50,10 +50,11 @@ const DashboardScreen = () => {
         />
       )}>
       <Drawer.Screen
-        name="Dashboard"
+        name="DashboardTabs"
         component={DashboardTabs}
         options={{
           headerShown: true,
+          title: 'Dashboard',
           drawerIcon: () => {
             return <IconM name="view-dashboard" size={25} />;
           },
