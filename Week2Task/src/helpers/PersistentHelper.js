@@ -19,15 +19,6 @@ class PersistentHelper {
     this.setValue(key, objectString);
   };
 
-  appendObject = async (key, object) => {
-    const data = await this.getObject(key);
-
-    const newObject = data
-      ? [...data, {...object, id: data.length + 1}]
-      : [{...object, id: 1}];
-    this.setObject(key, newObject);
-  };
-
   removeItem = key => {
     AsyncStorage.removeItem(key);
   };

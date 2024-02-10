@@ -33,7 +33,6 @@ export const cartSlice = createSlice({
         state.totalItems += 1;
         state.totalPrice += cartItem.item.basePrice;
       }
-      console.log(state.cartItems);
     },
     removeFromCart: (state, action) => {
       const itemId = action.payload;

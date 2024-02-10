@@ -1,7 +1,6 @@
 import {
   View,
   Text,
-  Button,
   TextInput,
   TouchableOpacity,
   Alert,
@@ -10,7 +9,7 @@ import {
 import React, {useCallback, useEffect, useState} from 'react';
 import PersistentHelper from '@helpers/PersistentHelper';
 import styles from './styles';
-import {USERS_KEY} from '../../constants';
+import {USERS_KEY} from '@constants';
 
 const RegisterScreen = ({navigation}) => {
   const [disabled, setDisabled] = useState(true);
@@ -29,19 +28,16 @@ const RegisterScreen = ({navigation}) => {
 
   useEffect(() => {
     PersistentHelper.getObject(USERS_KEY).then(data => {
-      if (data !== null) setUsers(data);
+      data ? setUsers(data) : setUsers([]);
     });
   }, []);
 
   useEffect(() => {
-    if (
-      name != '' &&
-      mobile != '' &&
-      email != '' &&
-      username != '' &&
-      password != '' &&
-      cpassword != ''
-    ) {
+    PersistentHelper.setObject(USERS_KEY, users);
+  }, [users]);
+
+  useEffect(() => {
+    if (name && mobile && email && username && password && cpassword) {
       setDisabled(false);
       setOpacity(1);
     } else {
@@ -67,13 +63,16 @@ const RegisterScreen = ({navigation}) => {
     } else {
       setErrorMessage('');
       if (!checkUsername(username)) {
-        PersistentHelper.appendObject(USERS_KEY, {
+        const newUser = {
           name: name,
           mobile: mobile,
           email: email,
           username: username,
           password: password,
-        });
+        };
+
+        newUser.id = users.length + 1;
+        setUsers([...users, newUser]);
 
         Alert.alert('You have been registered successfully.', '', [
           {
