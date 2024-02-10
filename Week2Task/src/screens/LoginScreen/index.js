@@ -10,7 +10,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {useUserContext} from '@contexts/UserContext';
 import styles from './styles';
 import PersistentHelper from '@helpers/PersistentHelper';
-import {USERS_KEY} from '../../constants';
+import {USERS_KEY} from '@constants';
 
 const LoginScreen = ({navigation}) => {
   const {actions} = useUserContext();
@@ -24,7 +24,7 @@ const LoginScreen = ({navigation}) => {
   const inputPasswordRef = useRef(null);
 
   useEffect(() => {
-    PersistentHelper.clear();
+    PersistentHelper.removeItem(USERS_KEY);
     PersistentHelper.setObject(USERS_KEY, [
       {
         id: 1,

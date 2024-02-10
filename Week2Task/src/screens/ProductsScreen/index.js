@@ -2,7 +2,7 @@ import {View, FlatList} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import ApiHelper from '@helpers/ApiHelper';
 import {PRODUCTS_URL, PRODUCT_ICON_URL} from '@constants';
-import ItemComponent from '@components/ItemComponent';
+import ProductItem from '@components/ProductItem';
 import styles from './styles';
 
 const ProductsScreen = () => {
@@ -19,15 +19,13 @@ const ProductsScreen = () => {
       });
   }, []);
 
-  const renderProductItem = ({item}) => {
-    return <ItemComponent item={item} />;
-  };
-
   return (
     <View style={styles.container}>
       <FlatList
         data={productsData}
-        renderItem={renderProductItem}
+        renderItem={({item}) => {
+          return <ProductItem item={item} />;
+        }}
         keyExtractor={item => item.id}
       />
     </View>

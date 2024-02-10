@@ -6,8 +6,10 @@ import {
   DashboardScreen,
   ProductsScreen,
   ProfileScreen,
+  TaskScreen,
 } from '@screens';
 import {UserContextProvider} from '@contexts/UserContext';
+import {CartScreen} from '../screens';
 
 const Stack = createNativeStackNavigator();
 
@@ -40,6 +42,8 @@ const Navigation = () => {
           options={{headerShown: false}}
         />
         <Stack.Screen name="Products" component={ProductsScreen} />
+        <Stack.Screen name="Cart" component={CartScreen} />
+        <Stack.Screen name="Tasks" component={TaskScreen} />
         <Stack.Screen name="Profile" component={ProfileScreen} />
       </Stack.Group>
     );

@@ -16,3 +16,4 @@ export const PRODUCT_ICON_URL =
 export const BASE_COLOR = '#4287f5';
 
 export const USERS_KEY = 'users';
+export const TASKS_KEY = 'tasks';

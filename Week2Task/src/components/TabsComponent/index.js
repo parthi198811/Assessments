@@ -1,7 +1,9 @@
 import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import Icon from 'react-native-vector-icons/dist/FontAwesome6';
-import {ProductsScreen, ProfileScreen, CartScreen} from '@screens';
+import IconFA5 from 'react-native-vector-icons/dist/FontAwesome5';
+import IconFA6 from 'react-native-vector-icons/dist/FontAwesome6';
+import IconM from 'react-native-vector-icons/dist/MaterialCommunityIcons';
+import {ProductsScreen, ProfileScreen, CartScreen, TaskScreen} from '@screens';
 import {BASE_COLOR} from '@constants';
 import {useSelector} from 'react-redux';
 
@@ -27,7 +29,9 @@ const DashboardTabs = () => {
         options={{
           headerShown: false,
           tabBarLabel: 'Products',
-          tabBarIcon: ({color}) => <Icon name="list" color={color} size={30} />,
+          tabBarIcon: ({color}) => (
+            <IconM name="devices" color={color} size={40} />
+          ),
         }}
       />
       <Tab.Screen
@@ -37,7 +41,17 @@ const DashboardTabs = () => {
           headerShown: false,
           tabBarBadge: totalItems,
           tabBarIcon: ({color}) => (
-            <Icon name="cart-shopping" color={color} size={35} />
+            <IconFA6 name="cart-shopping" color={color} size={35} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Task"
+        component={TaskScreen}
+        options={{
+          headerShown: false,
+          tabBarIcon: ({color}) => (
+            <IconFA5 name="tasks" color={color} size={35} />
           ),
         }}
       />
@@ -47,7 +61,7 @@ const DashboardTabs = () => {
         options={{
           headerShown: false,
           tabBarIcon: ({color}) => (
-            <Icon name="user-circle" color={color} size={35} />
+            <IconFA6 name="user-circle" color={color} size={35} />
           ),
         }}
       />

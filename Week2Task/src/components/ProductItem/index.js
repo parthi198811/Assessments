@@ -7,7 +7,7 @@ import {BASE_COLOR} from '@constants';
 import {addToCart} from '@redux/features/CartSlice';
 import {getItemQuantity} from '@redux/features/CartSlice';
 
-const ItemComponent = ({item}) => {
+const ProductItem = ({item}) => {
   const dispatch = useDispatch();
   const itemQty = getItemQuantity(item.id);
 
@@ -52,4 +52,4 @@ const ItemComponent = ({item}) => {
   );
 };
 
-export default memo(ItemComponent);
+export default memo(ProductItem);

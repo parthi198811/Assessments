@@ -4,6 +4,7 @@ import DashboardScreen from './DashboardScreen';
 import ProductsScreen from './ProductsScreen';
 import ProfileScreen from './ProfileScreen';
 import CartScreen from './CartScreen';
+import TaskScreen from './TaskScreen';
 
 export {
   LoginScreen,
@@ -12,4 +13,5 @@ export {
   ProductsScreen,
   ProfileScreen,
   CartScreen,
+  TaskScreen,
 };
