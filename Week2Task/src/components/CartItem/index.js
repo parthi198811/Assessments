@@ -29,9 +29,9 @@ const CartItem = ({cartItem}) => {
             <TouchableOpacity
               style={styles.button}
               onPress={() => {
-                dispatch(addToCart(item));
+                dispatch(removeFromCart(item.id));
               }}>
-              <Icon name="plus" color={'white'} size={15} />
+              <Icon name="minus" color={'white'} size={15} />
             </TouchableOpacity>
             <View style={styles.qtyView}>
               <Text>{cartItem.quantity}</Text>
@@ -39,9 +39,9 @@ const CartItem = ({cartItem}) => {
             <TouchableOpacity
               style={styles.button}
               onPress={() => {
-                dispatch(removeFromCart(item.id));
+                dispatch(addToCart(item));
               }}>
-              <Icon name="minus" color={'white'} size={15} />
+              <Icon name="plus" color={'white'} size={15} />
             </TouchableOpacity>
           </View>
         </View>
