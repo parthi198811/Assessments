@@ -10,6 +10,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     backgroundColor: 'white',
     justifyContent: 'space-between',
+    flexDirection: 'row',
   },
   title: {fontSize: 25, fontWeight: 'bold', color: 'darkblue'},
   description: {fontSize: 15},

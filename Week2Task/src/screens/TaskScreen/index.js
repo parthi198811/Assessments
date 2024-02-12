@@ -26,13 +26,20 @@ const TaskScreen = () => {
     setTasks([task, ...tasks]);
   };
 
+  const removeTask = taskId => {
+    const newTasks = tasks.filter(element => {
+      return element.id != taskId;
+    });
+    setTasks(newTasks);
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.mainContainer}>
         <FlatList
           data={tasks}
           renderItem={({item}) => {
-            return <TaskItem item={item} />;
+            return <TaskItem item={item} removeTask={removeTask} />;
           }}
           keyExtractor={item => {
             item.id;
