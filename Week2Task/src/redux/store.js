@@ -1,6 +1,15 @@
-import {configureStore} from '@reduxjs/toolkit';
-import cartReducer from '@redux/features/CartSlice';
+import {combineReducers, configureStore} from '@reduxjs/toolkit';
+import reducers from './features/reducers';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import {persistReducer, persistStore} from 'redux-persist';
 
-export default configureStore({
-  reducer: {cart: cartReducer},
+let rootReducers = combineReducers(reducers);
+
+let persistConfig = {key: 'root', storage: AsyncStorage};
+let persistedReducer = persistReducer(persistConfig, rootReducers);
+
+export const store = configureStore({
+  reducer: persistedReducer,
 });
+
+export const persistentStore = persistStore(store);

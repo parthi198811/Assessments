@@ -2,9 +2,11 @@ import React, {useEffect, useState} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import Navigation from '@navigation';
 import {Provider} from 'react-redux';
-import store from '@redux/store';
+import {store, persistentStore} from '@redux/store';
 import ErrorBoundary from './components/ErrorBoundary';
 import * as Sentry from '@sentry/react-native';
+import {PersistGate} from 'redux-persist/integration/react';
+import DataHelper from './helpers/DataHelper';
 
 Sentry.init({
   dsn: 'https://98087846d15d9c41d4e3c64b6a6b835b@o4506724963778560.ingest.sentry.io/4506724966465536',
@@ -14,14 +16,28 @@ Sentry.init({
 });
 
 const App = () => {
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    if (store && !isLoading) {
+      DataHelper.setStore(store);
+    }
+  });
+
   return (
-    <ErrorBoundary>
-      <Provider store={store}>
-        <NavigationContainer>
-          <Navigation />
-        </NavigationContainer>
-      </Provider>
-    </ErrorBoundary>
+    <Provider store={store}>
+      <PersistGate
+        persistor={persistentStore}
+        onBeforeLift={() => {
+          setIsLoading(false);
+        }}>
+        <ErrorBoundary>
+          <NavigationContainer>
+            <Navigation />
+          </NavigationContainer>
+        </ErrorBoundary>
+      </PersistGate>
+    </Provider>
   );
 };
 
