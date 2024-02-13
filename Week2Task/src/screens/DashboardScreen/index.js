@@ -7,12 +7,14 @@ import CustomDrawer from '@components/CustomDrawer';
 import {useUserContext} from '@contexts/UserContext';
 import {BASE_COLOR} from '@constants';
 import styles from './styles';
+import DataHelper from '../../helpers/DataHelper';
 
 const Drawer = createDrawerNavigator();
 
 const DashboardScreen = () => {
-  const {state, actions} = useUserContext();
-  const loggedInUser = state.loggedInUser;
+  // const {state, actions} = useUserContext();
+  // const loggedInUser = state.loggedInUser;
+  const loggedInUser = DataHelper.getLoggedInUser();
 
   const handleLogout = () => {
     Alert.alert('Are you sure you want to logout?', '', [
@@ -20,7 +22,8 @@ const DashboardScreen = () => {
       {
         text: 'Logout',
         onPress: () => {
-          actions.setLoggedInUser(null);
+          // actions.setLoggedInUser(null);
+          DataHelper.logout();
         },
       },
     ]);

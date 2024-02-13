@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {
   LoginScreen,
@@ -10,11 +10,19 @@ import {
 } from '@screens';
 import {UserContextProvider} from '@contexts/UserContext';
 import {CartScreen} from '../screens';
+import {useSelector} from 'react-redux';
 
 const Stack = createNativeStackNavigator();
 
 const Navigation = () => {
-  const [loggedInUser, setLoggedInUser] = useState(null);
+  const userObject = useSelector(state => state.user).loggedInUser;
+  const [loggedInUser, setLoggedInUser] = useState(
+    userObject ? userObject : null,
+  );
+
+  useEffect(() => {
+    setLoggedInUser(userObject ? userObject : null);
+  }, [userObject]);
 
   const renderAuthStack = () => {
     return (

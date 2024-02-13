@@ -7,13 +7,14 @@ import {
 } from 'react-native';
 import React, {useEffect, useRef, useState} from 'react';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import {useUserContext} from '@contexts/UserContext';
+// import {useUserContext} from '@contexts/UserContext';
 import styles from './styles';
 import PersistentHelper from '@helpers/PersistentHelper';
 import {USERS_KEY} from '../../constants';
+import DataHelper from '../../helpers/DataHelper';
 
 const LoginScreen = ({navigation}) => {
-  const {actions} = useUserContext();
+  // const {actions} = useUserContext();
 
   const [errorMessage, setErrorMessage] = useState('');
 
@@ -52,7 +53,8 @@ const LoginScreen = ({navigation}) => {
         });
 
         if (userObj != undefined) {
-          actions.setLoggedInUser(userObj);
+          DataHelper.login(userObj);
+          // actions.setLoggedInUser(userObj);
         } else {
           setErrorMessage('Username or Password is incorrect.');
         }

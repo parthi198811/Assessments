@@ -1,3 +1,5 @@
+import {login, logout} from '../redux/features/UserSlice';
+
 class DataHelper {
   store = undefined;
 
@@ -7,6 +9,18 @@ class DataHelper {
 
   setStore = storeRef => {
     this.store = storeRef;
+  };
+
+  login = userRef => {
+    this.store.dispatch(login(userRef));
+  };
+
+  logout = () => {
+    this.store.dispatch(logout());
+  };
+
+  getLoggedInUser = () => {
+    return this.store?.getState().user.loggedInUser;
   };
 }
 
