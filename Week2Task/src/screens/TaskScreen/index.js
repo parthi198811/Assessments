@@ -27,10 +27,12 @@ const TaskScreen = () => {
   };
 
   const removeTask = taskId => {
-    const newTasks = tasks.filter(element => {
-      return element.id != taskId;
+    const index = tasks.findIndex(element => {
+      return element.id == taskId;
     });
-    setTasks(newTasks);
+
+    tasks.splice(index, 1);
+    setTasks([...tasks]);
   };
 
   return (
