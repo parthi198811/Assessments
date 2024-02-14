@@ -1,12 +1,19 @@
 import React, {useEffect, useState} from 'react';
-import {NavigationContainer} from '@react-navigation/native';
+import {
+  DarkTheme,
+  DefaultTheme,
+  NavigationContainer,
+} from '@react-navigation/native';
 import Navigation from '@navigation';
 import {Provider} from 'react-redux';
 import {store, persistentStore} from '@redux/store';
-import ErrorBoundary from './components/ErrorBoundary';
+import ErrorBoundary from '@components/ErrorBoundary';
 import * as Sentry from '@sentry/react-native';
 import {PersistGate} from 'redux-persist/integration/react';
-import DataHelper from './helpers/DataHelper';
+import DataHelper from '@helpers/DataHelper';
+import PersistentHelper from '@helpers/PersistentHelper';
+import {THEME_KEY} from '@constants';
+import {SettingsContextProvider} from '@contexts/SettingsContext';
 
 Sentry.init({
   dsn: 'https://98087846d15d9c41d4e3c64b6a6b835b@o4506724963778560.ingest.sentry.io/4506724966465536',
@@ -17,12 +24,19 @@ Sentry.init({
 
 const App = () => {
   const [isLoading, setIsLoading] = useState(true);
+  const [theme, setTheme] = useState(false);
+
+  useEffect(() => {
+    PersistentHelper.getValue(THEME_KEY).then(value => {
+      setTheme(value == 'true' ? true : false);
+    });
+  }, []);
 
   useEffect(() => {
     if (store && !isLoading) {
       DataHelper.setStore(store);
     }
-  });
+  }, [isLoading]);
 
   return (
     <Provider store={store}>
@@ -32,9 +46,11 @@ const App = () => {
           setIsLoading(false);
         }}>
         <ErrorBoundary>
-          <NavigationContainer>
-            <Navigation />
-          </NavigationContainer>
+          <SettingsContextProvider value={{themeValue: theme, setTheme}}>
+            <NavigationContainer theme={theme ? DarkTheme : DefaultTheme}>
+              <Navigation />
+            </NavigationContainer>
+          </SettingsContextProvider>
         </ErrorBoundary>
       </PersistGate>
     </Provider>

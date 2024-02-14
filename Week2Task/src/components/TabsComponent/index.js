@@ -3,9 +3,11 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import IconFA5 from 'react-native-vector-icons/dist/FontAwesome5';
 import IconFA6 from 'react-native-vector-icons/dist/FontAwesome6';
 import IconM from 'react-native-vector-icons/dist/MaterialCommunityIcons';
+import IconI from 'react-native-vector-icons/dist/Ionicons';
 import {ProductsScreen, ProfileScreen, CartScreen, TaskScreen} from '@screens';
 import {BASE_COLOR} from '@constants';
 import {useSelector} from 'react-redux';
+import {SettingsScreen} from '../../screens';
 
 const Tab = createBottomTabNavigator();
 
@@ -18,7 +20,6 @@ const DashboardTabs = () => {
         tabBarShowLabel: false,
         tabBarStyle: {
           backgroundColor: BASE_COLOR,
-          height: 50,
         },
         tabBarActiveTintColor: 'orange',
         tabBarInactiveTintColor: 'white',
@@ -62,6 +63,16 @@ const DashboardTabs = () => {
           headerShown: false,
           tabBarIcon: ({color}) => (
             <IconFA6 name="user-circle" color={color} size={35} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Settings"
+        component={SettingsScreen}
+        options={{
+          headerShown: false,
+          tabBarIcon: ({color}) => (
+            <IconI name="settings-outline" color={color} size={35} />
           ),
         }}
       />

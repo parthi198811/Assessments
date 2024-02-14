@@ -17,3 +17,4 @@ export const BASE_COLOR = '#4287f5';
 
 export const USERS_KEY = 'users';
 export const TASKS_KEY = 'tasks';
+export const THEME_KEY = 'theme';
