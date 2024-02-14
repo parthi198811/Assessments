@@ -54,7 +54,6 @@ const LoginScreen = ({navigation}) => {
 
         if (userObj != undefined) {
           DataHelper.login(userObj);
-          // actions.setLoggedInUser(userObj);
         } else {
           setErrorMessage('Username or Password is incorrect.');
         }

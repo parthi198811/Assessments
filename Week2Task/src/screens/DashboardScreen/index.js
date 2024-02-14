@@ -7,7 +7,7 @@ import CustomDrawer from '@components/CustomDrawer';
 import {useUserContext} from '@contexts/UserContext';
 import {BASE_COLOR} from '@constants';
 import styles from './styles';
-import DataHelper from '../../helpers/DataHelper';
+import DataHelper from '@helpers/DataHelper';
 
 const Drawer = createDrawerNavigator();
 
