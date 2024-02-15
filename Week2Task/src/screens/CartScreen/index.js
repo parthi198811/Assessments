@@ -4,7 +4,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import Icon from 'react-native-vector-icons/dist/FontAwesome6';
 import CartItem from '@components/CartItem';
 import styles from './styles';
-import {clearCart} from '@redux/features/CartSlice';
+import {clearCart} from '@redux/features/cart/CartSlice';
 
 const CartScreen = () => {
   const dispatch = useDispatch();

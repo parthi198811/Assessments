@@ -4,8 +4,7 @@ import {useDispatch} from 'react-redux';
 import Icon from 'react-native-vector-icons/dist/FontAwesome6';
 import styles from './styles';
 import {BASE_COLOR} from '@constants';
-import {addToCart} from '@redux/features/CartSlice';
-import {getItemQuantity} from '@redux/features/CartSlice';
+import {addToCart, getItemQuantity} from '@redux/features/cart/CartSlice';
 
 const ProductItem = ({item}) => {
   const dispatch = useDispatch();
