@@ -8,6 +8,8 @@ import {useUserContext} from '@contexts/UserContext';
 import {BASE_COLOR} from '@constants';
 import styles from './styles';
 import DataHelper from '@helpers/DataHelper';
+import StorageScreen from '../StorageScreen';
+import ItemScreen from '../ItemScreen';
 
 const Drawer = createDrawerNavigator();
 
@@ -60,6 +62,28 @@ const DashboardScreen = () => {
           title: 'Dashboard',
           drawerIcon: () => {
             return <IconM name="view-dashboard" size={25} />;
+          },
+        }}
+      />
+      <Drawer.Screen
+        name="Item"
+        component={ItemScreen}
+        options={{
+          headerShown: true,
+          title: 'Items',
+          drawerIcon: () => {
+            return <IconM name="store" size={25} />;
+          },
+        }}
+      />
+      <Drawer.Screen
+        name="Storage"
+        component={StorageScreen}
+        options={{
+          headerShown: true,
+          title: 'Storage',
+          drawerIcon: () => {
+            return <IconM name="store" size={25} />;
           },
         }}
       />
