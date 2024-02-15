@@ -4,8 +4,10 @@ export const HEADERS = {
 };
 
 export const BASE_URL = 'https://dummyapi.online';
-
 export const PRODUCTS_URL = '/api/products';
+
+export const BASE_LOCAL_URL = 'http://localhost:3000/api';
+export const Items_URL = '/items';
 
 export const BANNER_IMAGE_URL =
   'https://global.hisense.com/dam/jcr:983144b1-36db-44ba-af97-7c15d37daa71/product-overview-hisense-smartphone-kv.h60-5g.jpg';

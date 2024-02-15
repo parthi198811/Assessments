@@ -2,8 +2,8 @@ import {View, Button, FlatList} from 'react-native';
 import React from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {request} from '@redux/features/item/ItemSlice';
-import {PRODUCTS_URL} from '@constants';
-import ProductItem from '@components/ProductItem';
+import {Items_URL} from '@constants';
+import {Text} from 'react-native-paper';
 
 const ItemScreen = () => {
   const dispatch = useDispatch();
@@ -14,14 +14,28 @@ const ItemScreen = () => {
       <Button
         title="TestSaga"
         onPress={() => {
-          dispatch(request({url: PRODUCTS_URL}));
+          dispatch(request({url: Items_URL}));
         }}
       />
 
       <FlatList
         data={items}
         renderItem={({item}) => {
-          return <ProductItem item={item} />;
+          return (
+            <View
+              style={{
+                flex: 1,
+                margin: 10,
+                borderWidth: 1,
+                borderRadius: 5,
+                padding: 10,
+              }}>
+              <Text style={{fontSize: 18, fontWeight: 'bold'}}>
+                {item.title}
+              </Text>
+              <Text>{item.details}</Text>
+            </View>
+          );
         }}
       />
     </View>

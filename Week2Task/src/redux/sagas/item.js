@@ -1,10 +1,9 @@
 import {call, fork, put, take} from 'redux-saga/effects';
-import {request} from '@redux/features/item/ItemSlice';
-import ApiHelper from '../../helpers/ApiHelper';
-import {failure, success} from '../features/item/ItemSlice';
+import {request, success, failure} from '@redux/features/item/ItemSlice';
+import {TestApiHelper} from '@helpers';
 
 function callGetRequest(url, data = {}, headers = {}) {
-  return ApiHelper.get(url);
+  return TestApiHelper.get(url);
 }
 
 function* watchRequest() {
