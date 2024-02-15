@@ -3,8 +3,7 @@ import React, {memo} from 'react';
 import Icon from 'react-native-vector-icons/dist/FontAwesome6';
 import styles from './styles';
 import {useDispatch} from 'react-redux';
-import {addToCart} from '@redux/features/CartSlice';
-import {removeFromCart} from '../../redux/features/CartSlice';
+import {addToCart, removeFromCart} from '@redux/features/cart/CartSlice';
 
 const CartItem = ({cartItem}) => {
   const dispatch = useDispatch();

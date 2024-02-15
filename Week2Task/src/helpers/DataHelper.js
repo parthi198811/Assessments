@@ -1,4 +1,4 @@
-import {login, logout} from '../redux/features/UserSlice';
+import {login, logout} from '@redux/features/user/UserSlice';
 
 class DataHelper {
   store = undefined;
