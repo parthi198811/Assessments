@@ -3,7 +3,7 @@ import React, {useEffect, useState} from 'react';
 import styles from './styles';
 import NewTask from '../NewTask';
 import Icon from 'react-native-vector-icons/dist/MaterialIcons';
-import PersistentHelper from '@helpers/PersistentHelper';
+import {PersistentHelper} from '@helpers';
 import {TASKS_KEY} from '@constants';
 import TaskItem from '@components/TaskItem';
 

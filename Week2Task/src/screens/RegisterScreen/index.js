@@ -7,7 +7,7 @@ import {
   ScrollView,
 } from 'react-native';
 import React, {useCallback, useEffect, useState} from 'react';
-import PersistentHelper from '@helpers/PersistentHelper';
+import {PersistentHelper} from '@helpers';
 import styles from './styles';
 import {USERS_KEY} from '@constants';
 

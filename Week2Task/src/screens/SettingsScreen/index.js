@@ -2,7 +2,7 @@ import {View, Text} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import styles from './styles';
 import {Switch} from 'react-native-paper';
-import PersistentHelper from '@helpers/PersistentHelper';
+import {PersistentHelper} from '@helpers';
 import {THEME_KEY} from '@constants';
 import {useSettingsContext} from '@contexts/SettingsContext';
 import {useTheme} from '@react-navigation/native';

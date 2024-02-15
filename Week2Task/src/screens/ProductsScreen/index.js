@@ -1,6 +1,6 @@
 import {View, FlatList} from 'react-native';
 import React, {useEffect, useState} from 'react';
-import ApiHelper from '@helpers/ApiHelper';
+import {ApiHelper} from '@helpers';
 import {PRODUCTS_URL, PRODUCT_ICON_URL} from '@constants';
 import ProductItem from '@components/ProductItem';
 import styles from './styles';

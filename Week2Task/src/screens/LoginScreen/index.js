@@ -9,9 +9,8 @@ import React, {useEffect, useRef, useState} from 'react';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 // import {useUserContext} from '@contexts/UserContext';
 import styles from './styles';
-import PersistentHelper from '@helpers/PersistentHelper';
-import {USERS_KEY} from '../../constants';
-import DataHelper from '../../helpers/DataHelper';
+import {USERS_KEY} from '@constants';
+import {DataHelper, PersistentHelper} from '@helpers';
 
 const LoginScreen = ({navigation}) => {
   // const {actions} = useUserContext();

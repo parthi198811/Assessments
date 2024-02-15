@@ -10,8 +10,7 @@ import {store, persistentStore} from '@redux/store';
 import ErrorBoundary from '@components/ErrorBoundary';
 import * as Sentry from '@sentry/react-native';
 import {PersistGate} from 'redux-persist/integration/react';
-import DataHelper from '@helpers/DataHelper';
-import PersistentHelper from '@helpers/PersistentHelper';
+import {DataHelper, PersistentHelper} from '@helpers';
 import {THEME_KEY} from '@constants';
 import {SettingsContextProvider} from '@contexts/SettingsContext';
 
