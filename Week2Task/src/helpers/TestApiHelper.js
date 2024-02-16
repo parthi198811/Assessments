@@ -5,7 +5,6 @@ const api = create({baseURL: BASE_LOCAL_URL, headers: HEADERS});
 
 class TestApiHelper {
   get = async url => {
-    console.log(url);
     const response = await api.get(url);
     return response.data;
   };
