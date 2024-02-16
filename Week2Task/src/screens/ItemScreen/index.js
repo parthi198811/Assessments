@@ -31,7 +31,7 @@ const ItemScreen = () => {
                 padding: 10,
               }}>
               <Text style={{fontSize: 18, fontWeight: 'bold'}}>
-                {item.title}
+                {item.name ? item.name : item.title}
               </Text>
               <Text>{item.details}</Text>
             </View>
