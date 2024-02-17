@@ -4,12 +4,16 @@ export const UserSlice = createSlice({
   name: 'user',
   initialState: {
     data: {},
+    profile: {},
     isFetching: false,
     failure: false,
     errorMessage: undefined,
   },
 
   reducers: {
+    addProfile: (state, action) => {
+      state.profile = action.payload;
+    },
     logout: state => {
       state.data = {};
     },
@@ -36,6 +40,7 @@ export const UserSlice = createSlice({
   },
 });
 
-export const {login, logout, request, success, failure} = UserSlice.actions;
+export const {addProfile, logout, request, success, failure} =
+  UserSlice.actions;
 
 export default UserSlice.reducer;

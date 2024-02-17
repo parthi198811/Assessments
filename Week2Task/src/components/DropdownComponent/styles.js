@@ -1,21 +1,17 @@
 import {StyleSheet} from 'react-native';
 
 const styles = StyleSheet.create({
-  container: {flex: 1},
-  dateContainer: {
+  container: {
     flex: 1,
-    backgroundColor: 'white',
+  },
+  dropdown: {
+    height: 40,
     borderWidth: 1,
     borderRadius: 5,
-    height: 40,
-    flexDirection: 'row',
+    paddingHorizontal: 8,
+    backgroundColor: 'white',
   },
-  dateText: {
-    flex: 1,
-    padding: 10,
-  },
-  dateButton: {
-    padding: 2,
+  icon: {
     marginRight: 5,
   },
   label: {
@@ -26,6 +22,14 @@ const styles = StyleSheet.create({
     zIndex: 999,
     paddingHorizontal: 8,
     fontSize: 14,
+  },
+  iconStyle: {
+    width: 20,
+    height: 20,
+  },
+  inputSearchStyle: {
+    height: 40,
+    fontSize: 16,
   },
 });
 

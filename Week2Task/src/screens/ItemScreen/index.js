@@ -15,8 +15,6 @@ const ItemScreen = () => {
   const [details, setDetails] = useState('');
   const [image, setImage] = useState('');
 
-  console.log(data);
-
   return (
     <View>
       <TextInput
