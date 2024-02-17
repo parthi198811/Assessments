@@ -4,17 +4,17 @@ import {
   TextInput,
   TouchableOpacity,
   ScrollView,
+  Alert,
 } from 'react-native';
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useRef, useState} from 'react';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-// import {useUserContext} from '@contexts/UserContext';
 import styles from './styles';
-import {USERS_KEY} from '@constants';
-import {DataHelper, PersistentHelper} from '@helpers';
+import {useDispatch} from 'react-redux';
+import {request} from '@redux/features/user/UserSlice';
+import {LOGIN_URL} from '@constants';
+import {useSelector} from 'react-redux';
 
 const LoginScreen = ({navigation}) => {
-  // const {actions} = useUserContext();
-
   const [errorMessage, setErrorMessage] = useState('');
 
   const [username, setUsername] = useState('');
@@ -23,19 +23,8 @@ const LoginScreen = ({navigation}) => {
   const inputUsernameRef = useRef(null);
   const inputPasswordRef = useRef(null);
 
-  useEffect(() => {
-    PersistentHelper.removeItem(USERS_KEY);
-    PersistentHelper.setObject(USERS_KEY, [
-      {
-        id: 1,
-        name: 'Parthi',
-        mobile: '1234567890',
-        email: 'test@test.com',
-        username: 'parthi',
-        password: 'parthi',
-      },
-    ]);
-  }, []);
+  const dispatch = useDispatch();
+  const user = useSelector(state => state.user);
 
   const clearInputs = () => {
     setErrorMessage('');
@@ -45,21 +34,11 @@ const LoginScreen = ({navigation}) => {
   };
 
   const handleLogin = () => {
-    PersistentHelper.getObject(USERS_KEY).then(users => {
-      if (users) {
-        const userObj = users.find(obj => {
-          return obj.username == username && obj.password == password;
-        });
+    dispatch(request({url: LOGIN_URL, data: {email: username, password}}));
 
-        if (userObj != undefined) {
-          DataHelper.login(userObj);
-        } else {
-          setErrorMessage('Username or Password is incorrect.');
-        }
-      } else {
-        setErrorMessage('Username or Password is incorrect.');
-      }
-    });
+    if (!user.isFetching && user.failure) {
+      Alert.alert(user.errorMessage.message);
+    }
   };
 
   return (

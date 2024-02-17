@@ -4,19 +4,17 @@ import {Alert, TouchableOpacity, View} from 'react-native';
 import IconM from 'react-native-vector-icons/dist/MaterialCommunityIcons';
 import DashboardTabs from '@components/TabsComponent';
 import CustomDrawer from '@components/CustomDrawer';
-import {useUserContext} from '@contexts/UserContext';
 import {BASE_COLOR} from '@constants';
 import styles from './styles';
-import {DataHelper} from '@helpers';
-import StorageScreen from '../StorageScreen';
-import ItemScreen from '../ItemScreen';
+import {useDispatch, useSelector} from 'react-redux';
+import {ItemScreen, StorageScreen} from '@screens';
+import {logout} from '@redux/features/user/UserSlice';
 
 const Drawer = createDrawerNavigator();
 
 const DashboardScreen = () => {
-  // const {state, actions} = useUserContext();
-  // const loggedInUser = state.loggedInUser;
-  const loggedInUser = DataHelper.getLoggedInUser();
+  const dispatch = useDispatch();
+  const user = useSelector(state => state.user);
 
   const handleLogout = () => {
     Alert.alert('Are you sure you want to logout?', '', [
@@ -24,8 +22,7 @@ const DashboardScreen = () => {
       {
         text: 'Logout',
         onPress: () => {
-          // actions.setLoggedInUser(null);
-          DataHelper.logout();
+          dispatch(logout());
         },
       },
     ]);
@@ -48,11 +45,7 @@ const DashboardScreen = () => {
         },
       }}
       drawerContent={props => (
-        <CustomDrawer
-          {...props}
-          name={loggedInUser.name}
-          logout={handleLogout}
-        />
+        <CustomDrawer {...props} name={user.data?.name} logout={handleLogout} />
       )}>
       <Drawer.Screen
         name="DashboardTabs"

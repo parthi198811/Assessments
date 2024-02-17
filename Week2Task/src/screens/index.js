@@ -6,6 +6,8 @@ import ProfileScreen from './ProfileScreen';
 import CartScreen from './CartScreen';
 import TaskScreen from './TaskScreen';
 import SettingsScreen from './SettingsScreen';
+import StorageScreen from './StorageScreen';
+import ItemScreen from './ItemScreen';
 
 export {
   LoginScreen,
@@ -16,4 +18,6 @@ export {
   CartScreen,
   TaskScreen,
   SettingsScreen,
+  StorageScreen,
+  ItemScreen,
 };

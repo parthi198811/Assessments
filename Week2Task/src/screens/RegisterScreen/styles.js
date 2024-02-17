@@ -1,10 +1,10 @@
 import {StyleSheet} from 'react-native';
 
 const styles = StyleSheet.create({
-  container: {flex: 1},
+  container: {flex: 1, justifyContent: 'center'},
   mainContainer: {
     flex: 1,
-    marginVertical: 30,
+    marginVertical: 50,
     marginHorizontal: 20,
     justifyContent: 'center',
   },

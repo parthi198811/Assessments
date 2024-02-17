@@ -15,14 +15,14 @@ import {useSelector} from 'react-redux';
 const Stack = createNativeStackNavigator();
 
 const Navigation = () => {
-  const userObject = useSelector(state => state.user).loggedInUser;
+  const user = useSelector(state => state.user);
   const [loggedInUser, setLoggedInUser] = useState(
-    userObject ? userObject : null,
+    user.data?.accessToken ? user.data : null,
   );
 
   useEffect(() => {
-    setLoggedInUser(userObject ? userObject : null);
-  }, [userObject]);
+    setLoggedInUser(user.data?.accessToken ? user.data : null);
+  }, [user.data]);
 
   const renderAuthStack = () => {
     return (

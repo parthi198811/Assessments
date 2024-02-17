@@ -1,6 +1,5 @@
 import {combineReducers, configureStore} from '@reduxjs/toolkit';
 import reducers from './features/reducers';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import {persistReducer, persistStore} from 'redux-persist';
 import reduxStorage from './storage';
 import createSagaMiddleware from 'redux-saga';

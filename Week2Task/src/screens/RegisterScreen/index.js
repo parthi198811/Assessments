@@ -6,17 +6,17 @@ import {
   Alert,
   ScrollView,
 } from 'react-native';
-import React, {useCallback, useEffect, useState} from 'react';
-import {PersistentHelper} from '@helpers';
+import React, {useEffect, useState} from 'react';
 import styles from './styles';
-import {USERS_KEY} from '@constants';
+import {useDispatch, useSelector} from 'react-redux';
+import {request} from '@redux/features/user/UserSlice';
+import {REGISTER_URL} from '@constants';
 
 const RegisterScreen = ({navigation}) => {
   const [disabled, setDisabled] = useState(true);
   const [opacity, setOpacity] = useState(0.5);
 
   const [name, setName] = useState('');
-  const [mobile, setMobile] = useState('');
   const [email, setEmail] = useState('');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -24,56 +24,39 @@ const RegisterScreen = ({navigation}) => {
 
   const [errorMessage, setErrorMessage] = useState('');
 
-  const [users, setUsers] = useState([]);
+  const dispatch = useDispatch();
+  const user = useSelector(state => state.user);
 
   useEffect(() => {
-    PersistentHelper.getObject(USERS_KEY).then(data => {
-      data ? setUsers(data) : setUsers([]);
-    });
-  }, []);
-
-  useEffect(() => {
-    PersistentHelper.setObject(USERS_KEY, users);
-  }, [users]);
-
-  useEffect(() => {
-    if (name && mobile && email && username && password && cpassword) {
+    if (name && email && username && password && cpassword) {
       setDisabled(false);
       setOpacity(1);
     } else {
       setDisabled(true);
       setOpacity(0.5);
     }
-  }, [name, mobile, email, username, password, cpassword]);
-
-  const checkUsername = useCallback(() => {
-    if (users.length > 0) {
-      const index = users.findIndex(obj => {
-        return obj.username == username;
-      });
-
-      return index != -1 ? true : false;
-    }
-    return false;
-  });
+  }, [name, email, username, password, cpassword]);
 
   const handleRegister = () => {
     if (cpassword != '' && password !== cpassword) {
       setErrorMessage('Password and Confirm Password is not similar.');
     } else {
       setErrorMessage('');
-      if (!checkUsername(username)) {
-        const newUser = {
-          name: name,
-          mobile: mobile,
-          email: email,
-          username: username,
-          password: password,
-        };
+      dispatch(
+        request({
+          url: REGISTER_URL,
+          data: {
+            realm: name,
+            email,
+            username,
+            password,
+          },
+        }),
+      );
 
-        newUser.id = users.length + 1;
-        setUsers([...users, newUser]);
-
+      if (!user.isFetching && user.failure) {
+        Alert.alert(user.errorMessage?.message);
+      } else if (user.data?.id) {
         Alert.alert('You have been registered successfully.', '', [
           {
             text: 'OK',
@@ -82,14 +65,12 @@ const RegisterScreen = ({navigation}) => {
             },
           },
         ]);
-      } else {
-        Alert.alert('Username is already exists.');
       }
     }
   };
 
   return (
-    <ScrollView style={styles.container}>
+    <ScrollView contentContainerStyle={styles.container}>
       <View style={styles.mainContainer}>
         <View style={styles.registerContainer}>
           <View style={styles.headerContainer}>
@@ -111,24 +92,12 @@ const RegisterScreen = ({navigation}) => {
             <View style={styles.textContainer}>
               <View style={styles.labelcontainer}>
                 <Text style={styles.required}>*</Text>
-                <Text style={styles.label}>Mobile</Text>
-              </View>
-              <TextInput
-                style={styles.textinput}
-                inputMode="numeric"
-                onChangeText={value => {
-                  setMobile(value);
-                }}
-              />
-            </View>
-            <View style={styles.textContainer}>
-              <View style={styles.labelcontainer}>
-                <Text style={styles.required}>*</Text>
                 <Text style={styles.label}>Email</Text>
               </View>
               <TextInput
                 style={styles.textinput}
                 inputMode="email"
+                autoCapitalize="none"
                 onChangeText={value => {
                   setEmail(value);
                 }}
@@ -141,6 +110,7 @@ const RegisterScreen = ({navigation}) => {
               </View>
               <TextInput
                 style={styles.textinput}
+                autoCapitalize="none"
                 onChangeText={value => {
                   setUsername(value);
                 }}
@@ -154,6 +124,7 @@ const RegisterScreen = ({navigation}) => {
               <TextInput
                 style={styles.textinput}
                 secureTextEntry={true}
+                autoCapitalize="none"
                 onChangeText={value => {
                   setPassword(value);
                 }}
@@ -167,6 +138,7 @@ const RegisterScreen = ({navigation}) => {
               <TextInput
                 style={styles.textinput}
                 secureTextEntry={true}
+                autoCapitalize="none"
                 onChangeText={value => {
                   setCPassword(value);
                 }}

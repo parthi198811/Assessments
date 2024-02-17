@@ -11,16 +11,8 @@ class DataHelper {
     this.store = storeRef;
   };
 
-  login = userRef => {
-    this.store.dispatch(login(userRef));
-  };
-
-  logout = () => {
-    this.store.dispatch(logout());
-  };
-
-  getLoggedInUser = () => {
-    return this.store?.getState().user.loggedInUser;
+  getUserAccessToken = () => {
+    return this.store.getState().user.accessToken;
   };
 }
 
