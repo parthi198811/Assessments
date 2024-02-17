@@ -1,25 +1,48 @@
-import {View, Button, FlatList} from 'react-native';
-import React from 'react';
-import {useDispatch, useSelector} from 'react-redux';
+import {View, Button, FlatList, TextInput} from 'react-native';
+import React, {useState} from 'react';
 import {request} from '@redux/features/item/ItemSlice';
 import {Items_URL} from '@constants';
 import {Text} from 'react-native-paper';
+import {useGetItemsQuery} from '@redux/apis/itemApi';
+import {useAddItemMutation} from '../../redux/apis/itemApi';
+import styles from './styles';
 
 const ItemScreen = () => {
-  const dispatch = useDispatch();
-  const items = useSelector(state => state.item.items);
+  const {data, error, isLoading} = useGetItemsQuery();
+  const [postItem, {isLoading: isPosting}] = useAddItemMutation();
+
+  const [title, setTitle] = useState('');
+  const [details, setDetails] = useState('');
+  const [image, setImage] = useState('');
+
+  console.log(data);
 
   return (
     <View>
+      <TextInput
+        style={styles.textInput}
+        value={title}
+        onChangeText={value => setTitle(value)}
+      />
+      <TextInput
+        style={styles.textInput}
+        value={details}
+        onChangeText={value => setDetails(value)}
+      />
+      <TextInput
+        style={styles.textInput}
+        value={image}
+        onChangeText={value => setImage(value)}
+      />
       <Button
-        title="TestSaga"
+        title="Add Item"
         onPress={() => {
-          dispatch(request({url: Items_URL}));
+          postItem({title, details, image});
         }}
       />
 
       <FlatList
-        data={items}
+        data={data}
         renderItem={({item}) => {
           return (
             <View

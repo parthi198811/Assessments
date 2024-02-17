@@ -7,7 +7,8 @@ export const BASE_URL = 'https://dummyapi.online';
 export const PRODUCTS_URL = '/api/products';
 
 export const BASE_LOCAL_URL = 'http://localhost:3000/api';
-export const Items_URL = '/items';
+export const GET_ITEMS_URL = '/items';
+export const POST_ITEM_URL = '/items';
 
 export const REGISTER_URL = '/Users';
 export const LOGIN_URL = '/Users/login';

@@ -4,6 +4,7 @@ import {persistReducer, persistStore} from 'redux-persist';
 import reduxStorage from './storage';
 import createSagaMiddleware from 'redux-saga';
 import rootSaga from './sagas';
+import {itemApi} from './apis/itemApi';
 
 let rootReducers = combineReducers(reducers);
 
@@ -15,7 +16,7 @@ const sagaMiddleware = createSagaMiddleware();
 export const store = configureStore({
   reducer: persistedReducer,
   middleware: getDefaultMiddleware =>
-    getDefaultMiddleware().concat(sagaMiddleware),
+    getDefaultMiddleware().concat(sagaMiddleware, itemApi.middleware),
 });
 
 sagaMiddleware.run(rootSaga);
