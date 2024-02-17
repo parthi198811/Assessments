@@ -1,4 +1,4 @@
-package com.week2task
+package com.itc.rnproject
 
 import android.app.Application
 import com.facebook.react.PackageList
