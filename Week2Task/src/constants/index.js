@@ -1,3 +1,5 @@
+import {Platform} from 'react-native';
+
 export const HEADERS = {
   'Content-Type': 'application/json',
   Accept: 'application/json',
@@ -6,7 +8,10 @@ export const HEADERS = {
 export const BASE_URL = 'https://dummyapi.online';
 export const PRODUCTS_URL = '/api/products';
 
-export const BASE_LOCAL_URL = 'http://localhost:3000/api';
+export const BASE_LOCAL_URL =
+  Platform.OS === 'android'
+    ? 'http://10.0.2.2:3000/api'
+    : 'http://localhost:3000/api';
 export const GET_ITEMS_URL = '/items';
 export const POST_ITEM_URL = '/items';
 

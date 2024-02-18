@@ -12,9 +12,16 @@ function* watchRequest() {
     const accessToken = yield select(state => state.user.data?.accessToken);
 
     try {
-      let response = yield call(callPostRequest, payload.url, payload.data, {
-        'X-Access-Token': accessToken,
-      });
+      let response = yield call(
+        callPostRequest,
+        payload.url,
+        payload.data,
+        accessToken
+          ? {
+              'X-Access-Token': accessToken,
+            }
+          : {},
+      );
       yield put(success(response));
     } catch (ex) {
       yield put(failure(ex));

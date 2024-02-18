@@ -70,7 +70,7 @@ const RegisterScreen = ({navigation}) => {
   };
 
   return (
-    <ScrollView contentContainerStyle={styles.container}>
+    <ScrollView style={styles.container}>
       <View style={styles.mainContainer}>
         <View style={styles.registerContainer}>
           <View style={styles.headerContainer}>
