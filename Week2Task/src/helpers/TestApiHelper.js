@@ -10,7 +10,7 @@ const api = create({baseURL: BASE_LOCAL_URL, headers: HEADERS});
 
 class TestApiHelper {
   get = async (url, data, headers = {}) => {
-    const response = await api.get(url, data, headers);
+    const response = await api.get(url, data, {headers: headers});
     return new Promise((resolve, reject) => {
       this.handlePromise(resolve, reject, response.data);
     });
@@ -18,6 +18,13 @@ class TestApiHelper {
 
   post = async (url, data, headers) => {
     const response = await api.post(url, data, {headers: headers});
+    return new Promise((resolve, reject) => {
+      this.handlePromise(resolve, reject, response.data);
+    });
+  };
+
+  put = async (url, data, headers = {}) => {
+    const response = await api.put(url, data, {headers: headers});
     return new Promise((resolve, reject) => {
       this.handlePromise(resolve, reject, response.data);
     });

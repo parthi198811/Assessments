@@ -12,12 +12,18 @@ export const BASE_LOCAL_URL =
   Platform.OS === 'android'
     ? 'http://10.0.2.2:3000/api'
     : 'http://localhost:3000/api';
+
 export const GET_ITEMS_URL = '/items';
 export const POST_ITEM_URL = '/items';
 
 export const REGISTER_URL = '/Users';
 export const LOGIN_URL = '/Users/login';
 export const LOGOUT_URL = '/Users/logout';
+
+export const GET_USER_PROFILE_URL = '/Users';
+export const PUT_USER_PROFILE_URL = '/Users';
+
+export const BUILD_NAME = 'com.itc.rnproject';
 
 export const BANNER_IMAGE_URL =
   'https://global.hisense.com/dam/jcr:983144b1-36db-44ba-af97-7c15d37daa71/product-overview-hisense-smartphone-kv.h60-5g.jpg';

@@ -1,6 +1,7 @@
 import {call, fork, put, select, take} from 'redux-saga/effects';
 import {request, success, failure} from '@redux/features/user/UserSlice';
-import {TestApiHelper} from '@helpers';
+import {TestApiHelper, PersistentKeychainHelper} from '@helpers';
+import {BUILD_NAME} from '@constants';
 
 function callPostRequest(url, data, headers = {}) {
   return TestApiHelper.post(url, data, headers);
@@ -23,6 +24,14 @@ function* watchRequest() {
           : {},
       );
       yield put(success(response));
+
+      if (response.userId && response.ttl && response.id) {
+        PersistentKeychainHelper.setInternetCredentials(
+          BUILD_NAME,
+          payload.data.email,
+          payload.data.password,
+        );
+      }
     } catch (ex) {
       yield put(failure(ex));
     }

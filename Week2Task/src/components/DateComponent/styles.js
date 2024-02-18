@@ -26,6 +26,7 @@ const styles = StyleSheet.create({
     zIndex: 999,
     paddingHorizontal: 8,
     fontSize: 14,
+    fontWeight: 'bold',
   },
 });
 

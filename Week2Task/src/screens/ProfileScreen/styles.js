@@ -1,5 +1,4 @@
 import {StyleSheet} from 'react-native';
-import {BASE_COLOR} from '../../constants';
 
 const styles = StyleSheet.create({
   container: {
@@ -29,6 +28,16 @@ const styles = StyleSheet.create({
   },
   contentContainer: {
     flex: 1,
+  },
+  label: {
+    position: 'absolute',
+    backgroundColor: 'white',
+    left: 15,
+    top: 0,
+    zIndex: 999,
+    paddingHorizontal: 8,
+    fontSize: 14,
+    fontWeight: 'bold',
   },
   textinput: {
     borderWidth: 1,
