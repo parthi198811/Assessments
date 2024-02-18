@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "819487030772",
+    "project_id": "rnproject-f21e4",
+    "storage_bucket": "rnproject-f21e4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:819487030772:android:ef906df9468f6b628a8da1",
+        "android_client_info": {
+          "package_name": "com.itc.rnproject"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC7GWA2gk-kj9rssnfW2q1sl62sv0El1so"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
