@@ -54,9 +54,7 @@ const RegisterScreen = ({navigation}) => {
         }),
       );
 
-      if (!user.isFetching && user.failure) {
-        Alert.alert(user.errorMessage?.message);
-      } else if (user.data?.id) {
+      if (user.data?.id) {
         Alert.alert('You have been registered successfully.', '', [
           {
             text: 'OK',

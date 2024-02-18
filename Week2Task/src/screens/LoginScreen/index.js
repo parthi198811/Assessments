@@ -35,10 +35,6 @@ const LoginScreen = ({navigation}) => {
 
   const handleLogin = () => {
     dispatch(request({url: LOGIN_URL, data: {email: username, password}}));
-
-    if (!user.isFetching && user.failure) {
-      Alert.alert(user.errorMessage.message);
-    }
   };
 
   return (

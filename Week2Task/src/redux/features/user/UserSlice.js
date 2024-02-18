@@ -1,4 +1,5 @@
 import {createSlice} from '@reduxjs/toolkit';
+import {Alert} from 'react-native';
 
 export const UserSlice = createSlice({
   name: 'user',
@@ -36,6 +37,8 @@ export const UserSlice = createSlice({
       state.failure = true;
       state.errorMessage = action.payload;
       state.data = {};
+
+      Alert.alert(state.errorMessage.message);
     },
   },
 });
