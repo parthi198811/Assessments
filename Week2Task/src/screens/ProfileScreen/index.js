@@ -44,15 +44,6 @@ const ProfileScreen = () => {
     return {margin: 5, marginVertical: 8};
   }, []);
 
-  useEffect(() => {
-    setName(userProfile.name);
-    setEmail(userProfile.email);
-    setGender(userProfile.gender);
-    setBirthdate(userProfile.birthdate);
-    setCountry(userProfile.country);
-    setProfileImage(userProfile.profileImage);
-  }, [userProfile]);
-
   const handleSubmit = () => {
     dispatch(
       addProfile({name, email, gender, birthdate, country, profileImage}),
@@ -62,12 +53,12 @@ const ProfileScreen = () => {
   const handleRemove = () => {
     dispatch(addProfile({}));
 
-    setName(undefined);
-    setEmail(undefined);
-    setGender(undefined);
-    setBirthdate(undefined);
-    setCountry(undefined);
-    setProfileImage(undefined);
+    setName('');
+    setEmail('');
+    setGender('');
+    setBirthdate('');
+    setCountry('');
+    setProfileImage('');
   };
 
   return (

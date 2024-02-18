@@ -19,9 +19,9 @@ const DateComponent = props => {
   }, []);
 
   useEffect(() => {
-    if (value == undefined) {
+    if (!value) {
       setDate(new Date());
-      setDateValue(date.toLocaleDateString());
+      setDateValue(new Date().toLocaleDateString());
     }
   }, [value]);
 
