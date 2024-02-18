@@ -1,4 +1,4 @@
-import {View, Text} from 'react-native';
+import {View, Text, Button} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import styles from './styles';
 import {Switch} from 'react-native-paper';
@@ -6,6 +6,7 @@ import {PersistentHelper} from '@helpers';
 import {THEME_KEY} from '@constants';
 import {useSettingsContext} from '@contexts/SettingsContext';
 import {useTheme} from '@react-navigation/native';
+import crashlytics from '@react-native-firebase/crashlytics';
 
 const SettingsScreen = () => {
   const {colors} = useTheme();
@@ -24,16 +25,24 @@ const SettingsScreen = () => {
   }, [isEnabled]);
 
   return (
-    <View style={styles.container}>
-      <Text style={[styles.text, {color: colors.text}]}>Dark Theme</Text>
-      <Switch
-        trackColor={{false: '#767577', true: '#81b0ff'}}
-        thumbColor={isEnabled ? '#f5dd4b' : '#f4f3f4'}
-        value={isEnabled}
-        onValueChange={() => {
-          setIsEnabled(!isEnabled);
+    <View style={{flex: 1}}>
+      <Button
+        title="Test Crashlytics"
+        onPress={() => {
+          crashlytics().crash();
         }}
       />
+      <View style={styles.container}>
+        <Text style={[styles.text, {color: colors.text}]}>Dark Theme</Text>
+        <Switch
+          trackColor={{false: '#767577', true: '#81b0ff'}}
+          thumbColor={isEnabled ? '#f5dd4b' : '#f4f3f4'}
+          value={isEnabled}
+          onValueChange={() => {
+            setIsEnabled(!isEnabled);
+          }}
+        />
+      </View>
     </View>
   );
 };
