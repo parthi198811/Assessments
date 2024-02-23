@@ -12,6 +12,7 @@ import {UserContextProvider} from '@contexts/UserContext';
 import {CartScreen} from '../screens';
 import {useSelector} from 'react-redux';
 import auth from '@react-native-firebase/auth';
+import messaging from '@react-native-firebase/messaging';
 
 const Stack = createNativeStackNavigator();
 
@@ -22,6 +23,34 @@ const Navigation = () => {
   );
 
   const [firebaseUser, setFirebaseUser] = useState(null);
+
+  loadDeviceToken = async () => {
+    let token = await PermissionHelper.getDeviceToken();
+    console.log('Device Token : ' + token);
+  };
+
+  useEffect(() => {
+    // Device Token
+    loadDeviceToken();
+
+    // Foreground Notifications
+    const unsubscribe = messaging().onMessage(async remoteMessage => {
+      Alert.alert('New Notification', JSON.stringify(remoteMessage));
+      if (remoteMessage.data?.route == 'Register') {
+        console.log(remoteMessage.data);
+      }
+    });
+
+    // Background Notifications
+    messaging().setBackgroundMessageHandler(async remoteMessage => {
+      console.log('Background Notification', remoteMessage);
+      if (remoteMessage.data?.route == 'Register') {
+        console.log(remoteMessage.data);
+      }
+    });
+
+    return unsubscribe;
+  }, []);
 
   useEffect(() => {
     const subscriber = auth().onAuthStateChanged(user => {

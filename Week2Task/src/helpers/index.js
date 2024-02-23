@@ -7,6 +7,7 @@ import PersistentSensitiveInfoHelper from './PersistentSensitiveInfoHelper';
 import PersistentMMKVHelper from './PersistentMMKVHelper';
 import LocationHelper from './LocationHelper';
 import FirebaseAuthHelper from './FirebaseAuthHelper';
+import PermissionHelper from './PermissionHelper';
 
 export {
   ApiHelper,
@@ -18,4 +19,5 @@ export {
   PersistentMMKVHelper,
   LocationHelper,
   FirebaseAuthHelper,
+  PermissionHelper,
 };

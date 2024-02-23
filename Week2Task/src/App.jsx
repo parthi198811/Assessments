@@ -10,9 +10,10 @@ import {store, persistentStore} from '@redux/store';
 import ErrorBoundary from '@components/ErrorBoundary';
 import * as Sentry from '@sentry/react-native';
 import {PersistGate} from 'redux-persist/integration/react';
-import {DataHelper, PersistentHelper} from '@helpers';
+import {DataHelper, PersistentHelper, PermissionHelper} from '@helpers';
 import {THEME_KEY} from '@constants';
 import {SettingsContextProvider} from '@contexts/SettingsContext';
+import {Platform} from 'react-native';
 
 Sentry.init({
   dsn: 'https://98087846d15d9c41d4e3c64b6a6b835b@o4506724963778560.ingest.sentry.io/4506724966465536',
@@ -29,6 +30,10 @@ const App = () => {
     PersistentHelper.getValue(THEME_KEY).then(value => {
       setTheme(value == 'true' ? true : false);
     });
+
+    Platform.OS == 'android'
+      ? PermissionHelper.requestNotificationPermissionForAndroid()
+      : PermissionHelper.requestNotificationPermissionForiOS();
   }, []);
 
   useEffect(() => {
