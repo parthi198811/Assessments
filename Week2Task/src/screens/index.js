@@ -8,6 +8,7 @@ import TaskScreen from './TaskScreen';
 import SettingsScreen from './SettingsScreen';
 import StorageScreen from './StorageScreen';
 import ItemScreen from './ItemScreen';
+import MapScreen from './MapScreen';
 
 export {
   LoginScreen,
@@ -20,4 +21,5 @@ export {
   SettingsScreen,
   StorageScreen,
   ItemScreen,
+  MapScreen,
 };

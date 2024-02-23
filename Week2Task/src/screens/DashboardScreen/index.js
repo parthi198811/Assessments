@@ -9,6 +9,8 @@ import styles from './styles';
 import {useDispatch, useSelector} from 'react-redux';
 import {ItemScreen, StorageScreen} from '@screens';
 import {logout} from '@redux/features/user/UserSlice';
+import {MapScreen} from '..';
+import {FirebaseAuthHelper} from '../../helpers';
 
 const Drawer = createDrawerNavigator();
 
@@ -22,7 +24,8 @@ const DashboardScreen = () => {
       {
         text: 'Logout',
         onPress: () => {
-          dispatch(logout());
+          // dispatch(logout());
+          FirebaseAuthHelper.logout();
         },
       },
     ]);
@@ -55,6 +58,17 @@ const DashboardScreen = () => {
           title: 'Dashboard',
           drawerIcon: () => {
             return <IconM name="view-dashboard" size={25} />;
+          },
+        }}
+      />
+      <Drawer.Screen
+        name="Map"
+        component={MapScreen}
+        options={{
+          headerShown: true,
+          title: 'Maps',
+          drawerIcon: () => {
+            return <IconM name="store" size={25} />;
           },
         }}
       />
