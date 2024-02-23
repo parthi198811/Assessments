@@ -41,6 +41,11 @@ export const ERROR_WRONG_CREDENTIALS = {
   message: 'Credentials are not correct. Please try again.',
 };
 
+export const ERROR_AUTHORIZATION_REQUIRED = {
+  title: 'Oops!',
+  message: 'Authorization is required. Please try again.',
+};
+
 export const ERROR_VALIDATION = {
   title: 'Oops!',
   message: 'Details already exists.',

@@ -15,15 +15,17 @@ const DateComponent = props => {
       const parts = value.split('/');
       setDate(new Date(parts[2], parts[1] - 1, parts[0]));
     }
-    setDateValue(date.toLocaleDateString());
   }, []);
 
   useEffect(() => {
     if (!value) {
       setDate(new Date());
-      setDateValue(new Date().toLocaleDateString());
     }
   }, [value]);
+
+  useEffect(() => {
+    setDateValue(date.toLocaleDateString());
+  }, [date]);
 
   return (
     <View style={[styles.container, customStyle]}>
@@ -44,8 +46,6 @@ const DateComponent = props => {
         onConfirm={date => {
           setOpen(false);
           setDate(date);
-
-          setDateValue(date.toLocaleDateString());
         }}
         onCancel={() => {
           setOpen(false);

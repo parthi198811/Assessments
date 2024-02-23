@@ -4,6 +4,7 @@ import {
   ERROR_NETWORK_NOT_AVAILABLE,
   ERROR_WRONG_CREDENTIALS,
   ERROR_VALIDATION,
+  ERROR_AUTHORIZATION_REQUIRED,
 } from '@constants';
 
 const api = create({baseURL: BASE_LOCAL_URL, headers: HEADERS});
@@ -36,6 +37,8 @@ class TestApiHelper {
         reject(ERROR_WRONG_CREDENTIALS);
       } else if (response.error.code === 'NETWORK_ERROR') {
         reject(ERROR_NETWORK_NOT_AVAILABLE);
+      } else if (response.error.code === 'AUTHORIZATION_REQUIRED') {
+        reject(ERROR_AUTHORIZATION_REQUIRED);
       } else {
         reject(ERROR_VALIDATION);
       }
