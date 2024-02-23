@@ -13,6 +13,7 @@ import {useDispatch} from 'react-redux';
 import {request} from '@redux/features/user/UserSlice';
 import {LOGIN_URL} from '@constants';
 import {useSelector} from 'react-redux';
+import {FirebaseAuthHelper} from '../../helpers';
 
 const LoginScreen = ({navigation}) => {
   const [errorMessage, setErrorMessage] = useState('');
@@ -34,7 +35,12 @@ const LoginScreen = ({navigation}) => {
   };
 
   const handleLogin = () => {
-    dispatch(request({url: LOGIN_URL, data: {email: username, password}}));
+    // dispatch(request({url: LOGIN_URL, data: {email: username, password}}));
+    FirebaseAuthHelper.login(username, password);
+  };
+
+  const handleForgotPassword = () => {
+    FirebaseAuthHelper.forgotPassword(username);
   };
 
   return (
@@ -79,6 +85,28 @@ const LoginScreen = ({navigation}) => {
             <Text style={[styles.buttonText, {marginLeft: 10}]}>Login</Text>
           </TouchableOpacity>
         </View>
+        <TouchableOpacity
+          onPress={() => {
+            handleForgotPassword();
+          }}>
+          <Text style={styles.registerButton}>Forgot Password</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={[styles.button, {flexDirection: 'row'}]}
+          onPress={() => {
+            FirebaseAuthHelper.onGoogleSignIn()
+              .then(() => {
+                console.log('Signed in with Google!');
+              })
+              .catch(e => {
+                console.log(e);
+              });
+          }}>
+          <Icon name="login" color={'white'} size={30} />
+          <Text style={[styles.buttonText, {marginLeft: 10}]}>
+            Google Sign-In
+          </Text>
+        </TouchableOpacity>
         <View style={styles.bottomContainer}>
           <Text style={styles.registerText}>Don't have an account ? </Text>
           <TouchableOpacity

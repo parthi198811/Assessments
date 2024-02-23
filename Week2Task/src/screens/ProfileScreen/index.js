@@ -196,11 +196,11 @@ const ProfileScreen = () => {
         <TouchableOpacity style={styles.button} onPress={handleSubmit}>
           <Text style={styles.buttonText}>Update</Text>
         </TouchableOpacity>
-        {userProfile?.realm && (
+        {/* {userProfile?.realm && (
           <TouchableOpacity style={styles.button} onPress={handleRemove}>
             <Text style={styles.buttonText}>Remove</Text>
           </TouchableOpacity>
-        )}
+        )} */}
       </View>
     </View>
   );

@@ -11,6 +11,7 @@ import styles from './styles';
 import {useDispatch, useSelector} from 'react-redux';
 import {request} from '@redux/features/user/UserSlice';
 import {REGISTER_URL} from '@constants';
+import {FirebaseAuthHelper} from '../../helpers';
 
 const RegisterScreen = ({navigation}) => {
   const [disabled, setDisabled] = useState(true);
@@ -37,34 +38,39 @@ const RegisterScreen = ({navigation}) => {
     }
   }, [name, email, username, password, cpassword]);
 
-  const handleRegister = () => {
-    if (cpassword != '' && password !== cpassword) {
-      setErrorMessage('Password and Confirm Password is not similar.');
-    } else {
-      setErrorMessage('');
-      dispatch(
-        request({
-          url: REGISTER_URL,
-          data: {
-            realm: name,
-            email,
-            username,
-            password,
-          },
-        }),
-      );
+  // useEffect(() => {
+  //   if (user.data?.id) {
+  //     Alert.alert('You have been registered successfully.', '', [
+  //       {
+  //         text: 'OK',
+  //         onPress: () => {
+  //           navigation.navigate('Login');
+  //         },
+  //       },
+  //     ]);
+  //   } else if (user.failure) {
+  //     Alert.alert(user.errorMessage.message);
+  //   }
+  // }, [user]);
 
-      if (user.data?.id) {
-        Alert.alert('You have been registered successfully.', '', [
-          {
-            text: 'OK',
-            onPress: () => {
-              navigation.navigate('Login');
-            },
-          },
-        ]);
-      }
-    }
+  const handleRegister = () => {
+    FirebaseAuthHelper.signup(email, password);
+    // if (cpassword != '' && password !== cpassword) {
+    //   setErrorMessage('Password and Confirm Password is not similar.');
+    // } else {
+    //   setErrorMessage('');
+    //   dispatch(
+    //     request({
+    //       url: REGISTER_URL,
+    //       data: {
+    //         realm: name,
+    //         email,
+    //         username,
+    //         password,
+    //       },
+    //     }),
+    //   );
+    // }
   };
 
   return (

@@ -11,6 +11,7 @@ import {
 import {UserContextProvider} from '@contexts/UserContext';
 import {CartScreen} from '../screens';
 import {useSelector} from 'react-redux';
+import auth from '@react-native-firebase/auth';
 
 const Stack = createNativeStackNavigator();
 
@@ -19,6 +20,16 @@ const Navigation = () => {
   const [loggedInUser, setLoggedInUser] = useState(
     user.data?.accessToken ? user.data : null,
   );
+
+  const [firebaseUser, setFirebaseUser] = useState(null);
+
+  useEffect(() => {
+    const subscriber = auth().onAuthStateChanged(user => {
+      console.log('onAuthStateChanged');
+      setFirebaseUser(user);
+    });
+    return subscriber;
+  }, []);
 
   useEffect(() => {
     setLoggedInUser(user.data?.accessToken ? user.data : null);
@@ -64,7 +75,8 @@ const Navigation = () => {
         actions: {setLoggedInUser},
       }}>
       <Stack.Navigator>
-        {loggedInUser != null ? renderMainStack() : renderAuthStack()}
+        {/* {loggedInUser != null ? renderMainStack() : renderAuthStack()} */}
+        {firebaseUser ? renderMainStack() : renderAuthStack()}
       </Stack.Navigator>
     </UserContextProvider>
   );
