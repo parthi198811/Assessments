@@ -1077,6 +1077,10 @@ PODS:
     - React-Core
   - react-native-sensitive-info (5.5.8):
     - React
+  - react-native-ssl-public-key-pinning (1.1.4):
+    - React-Core
+    - React-RCTNetwork
+    - TrustKit
   - React-nativeconfig (0.73.3)
   - React-NativeModulesApple (0.73.3):
     - glog
@@ -1309,6 +1313,7 @@ PODS:
   - SentryPrivate (8.17.1)
   - SocketRocket (0.6.1)
   - TOCropViewController (2.6.1)
+  - TrustKit (3.0.3)
   - Yoga (1.14.0)
 
 DEPENDENCIES:
@@ -1350,6 +1355,7 @@ DEPENDENCIES:
   - react-native-mmkv (from `../node_modules/react-native-mmkv`)
   - react-native-safe-area-context (from `../node_modules/react-native-safe-area-context`)
   - react-native-sensitive-info (from `../node_modules/react-native-sensitive-info`)
+  - react-native-ssl-public-key-pinning (from `../node_modules/react-native-ssl-public-key-pinning`)
   - React-nativeconfig (from `../node_modules/react-native/ReactCommon`)
   - React-NativeModulesApple (from `../node_modules/react-native/ReactCommon/react/nativemodule/core/platform/ios`)
   - React-perflogger (from `../node_modules/react-native/ReactCommon/reactperflogger`)
@@ -1420,6 +1426,7 @@ SPEC REPOS:
     - SentryPrivate
     - SocketRocket
     - TOCropViewController
+    - TrustKit
 
 EXTERNAL SOURCES:
   boost:
@@ -1493,6 +1500,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-safe-area-context"
   react-native-sensitive-info:
     :path: "../node_modules/react-native-sensitive-info"
+  react-native-ssl-public-key-pinning:
+    :path: "../node_modules/react-native-ssl-public-key-pinning"
   React-nativeconfig:
     :path: "../node_modules/react-native/ReactCommon"
   React-NativeModulesApple:
@@ -1627,6 +1636,7 @@ SPEC CHECKSUMS:
   react-native-mmkv: e97c0c79403fb94577e5d902ab1ebd42b0715b43
   react-native-safe-area-context: b97eb6f9e3b7f437806c2ce5983f479f8eb5de4b
   react-native-sensitive-info: 400c6e3d27945e15c8cddb5b4b92233c85ee06f8
+  react-native-ssl-public-key-pinning: 88a68b47d60d7621c123015e2b24717dacb0571a
   React-nativeconfig: 4662ac75a0a77789c9ed896ed77baa1a25cdf006
   React-NativeModulesApple: 92bc296f2ae166d10cb4d6a05498c80bf4ef9fa2
   React-perflogger: 27ccacf853ba725524ef2b4e444f14e34d0837b0
@@ -1666,6 +1676,7 @@ SPEC CHECKSUMS:
   SentryPrivate: 839b1e58addf58624087a80b2628e543193fa8ef
   SocketRocket: f32cd54efbe0f095c4d7594881e52619cfe80b17
   TOCropViewController: edfd4f25713d56905ad1e0b9f5be3fbe0f59c863
+  TrustKit: 7858ea59d0e226b1457b2e9cc8b95d77ab21d471
   Yoga: 08cd7601462818c4985bda7b205b9e6a92a7e66a
 
 PODFILE CHECKSUM: e9c308ec0542bc0c847d1599aa3895b1d2fab1ae
