@@ -11,7 +11,7 @@ const ProductsScreen = () => {
   useEffect(() => {
     ApiHelper.get(PRODUCTS_URL)
       .then(data => {
-        data.map(obj => (obj.image_url = PRODUCT_ICON_URL));
+        data?.map(obj => (obj.image_url = PRODUCT_ICON_URL));
         setProductsData(data);
       })
       .catch(ex => {
