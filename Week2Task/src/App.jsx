@@ -14,6 +14,10 @@ import {DataHelper, PersistentHelper, PermissionHelper} from '@helpers';
 import {THEME_KEY} from '@constants';
 import {SettingsContextProvider} from '@contexts/SettingsContext';
 import {Platform} from 'react-native';
+import {
+  initializeSslPinning,
+  addSslPinningErrorListener,
+} from 'react-native-ssl-public-key-pinning';
 
 Sentry.init({
   dsn: 'https://98087846d15d9c41d4e3c64b6a6b835b@o4506724963778560.ingest.sentry.io/4506724966465536',
@@ -26,7 +30,21 @@ const App = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [theme, setTheme] = useState(false);
 
+  const initializePinning = async () => {
+    await initializeSslPinning({
+      'dummyapi.online': {
+        includeSubdomains: true,
+        publicKeyHashes: [
+          'vhM4/VqeRGHEnZXEviILvWosdQ2e0dq496owXiqsfRo=',
+          '47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=',
+        ],
+      },
+    });
+  };
+
   useEffect(() => {
+    initializePinning();
+
     PersistentHelper.getValue(THEME_KEY).then(value => {
       setTheme(value == 'true' ? true : false);
     });
@@ -34,6 +52,15 @@ const App = () => {
     Platform.OS == 'android'
       ? PermissionHelper.requestNotificationPermissionForAndroid()
       : PermissionHelper.requestNotificationPermissionForiOS();
+  }, []);
+
+  useEffect(() => {
+    const subscription = addSslPinningErrorListener(error => {
+      console.log('SSLPinningErrorListener', error);
+    });
+    return () => {
+      subscription.remove();
+    };
   }, []);
 
   useEffect(() => {
