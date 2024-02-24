@@ -13,7 +13,7 @@ import {CartScreen} from '../screens';
 import {useSelector} from 'react-redux';
 import auth from '@react-native-firebase/auth';
 import messaging from '@react-native-firebase/messaging';
-import {addSslPinningErrorListener} from 'react-native-ssl-public-key-pinning';
+import {PermissionHelper} from '../helpers';
 
 const Stack = createNativeStackNavigator();
 
@@ -51,15 +51,6 @@ const Navigation = () => {
     });
 
     return unsubscribe;
-  }, []);
-
-  useEffect(() => {
-    const subscription = addSslPinningErrorListener(error => {
-      console.log(error);
-    });
-    return () => {
-      subscription.remove();
-    };
   }, []);
 
   useEffect(() => {

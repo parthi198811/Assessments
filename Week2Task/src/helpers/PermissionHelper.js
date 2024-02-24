@@ -18,10 +18,47 @@ class PermissionHelper {
     }
   };
 
-  requestNotificationPermissionForAndroid = () => {
-    PermissionsAndroid.request(
-      PermissionsAndroid.PERMISSIONS.POST_NOTIFICATIONS,
-    );
+  requestPermissionForAndroid = () => {
+    this.requestNotificationPermissionForAndroid();
+    this.requestLocationPermissionForAndroid();
+  };
+
+  requestNotificationPermissionForAndroid = async () => {
+    try {
+      const granted = await PermissionsAndroid.request(
+        PermissionsAndroid.PERMISSIONS.POST_NOTIFICATIONS,
+        {
+          title: 'RNProject',
+          message: 'Asking for notification permission',
+        },
+      );
+      if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+        console.log('Notification permission granted.');
+      } else {
+        console.log('Notification permission denied.');
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  requestLocationPermissionForAndroid = async () => {
+    try {
+      const granted = await PermissionsAndroid.request(
+        PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
+        {
+          title: 'RNProject',
+          message: 'Asking for location permission',
+        },
+      );
+      if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+        console.log('Location permission granted.');
+      } else {
+        console.log('Location permission denied.');
+      }
+    } catch (e) {
+      console.log(e);
+    }
   };
 }
 

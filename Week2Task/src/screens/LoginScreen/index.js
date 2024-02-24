@@ -99,7 +99,7 @@ const LoginScreen = ({navigation}) => {
                 console.log('Signed in with Google!');
               })
               .catch(e => {
-                console.log(e);
+                console.log('Google SignIn Error', e);
               });
           }}>
           <Icon name="login" color={'white'} size={30} />

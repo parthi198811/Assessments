@@ -50,7 +50,7 @@ const App = () => {
     });
 
     Platform.OS == 'android'
-      ? PermissionHelper.requestNotificationPermissionForAndroid()
+      ? PermissionHelper.requestPermissionForAndroid()
       : PermissionHelper.requestNotificationPermissionForiOS();
   }, []);
 
