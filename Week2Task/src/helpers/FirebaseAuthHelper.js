@@ -1,6 +1,7 @@
 import auth from '@react-native-firebase/auth';
 import {GoogleSignin} from '@react-native-google-signin/google-signin';
-import {Platform} from 'react-native';
+import {Alert, Platform} from 'react-native';
+import {ERROR_WRONG_CREDENTIALS} from '../constants';
 
 class FirebaseAuthHelper {
   constructor() {
@@ -33,14 +34,12 @@ class FirebaseAuthHelper {
       })
       .catch(error => {
         if (error.code === 'auth/email-already-in-use') {
-          console.log('That email address is already in use!');
+          Alert.alert('That email address is already in use!');
+        } else if (error.code === 'auth/invalid-email') {
+          Alert.alert('That email address is invalid!');
+        } else {
+          Alert.alert(error);
         }
-
-        if (error.code === 'auth/invalid-email') {
-          console.log('That email address is invalid!');
-        }
-
-        console.error(error);
       });
   };
 
@@ -51,15 +50,14 @@ class FirebaseAuthHelper {
         console.log('User logged in');
       })
       .catch(error => {
-        if (error.code === 'auth/email-already-in-use') {
-          console.log('That email address is already in use!');
+        if (error.code === 'auth/invalid-credential') {
+          Alert.alert(
+            ERROR_WRONG_CREDENTIALS.title,
+            ERROR_WRONG_CREDENTIALS.message,
+          );
+        } else {
+          Alert.alert(error.message);
         }
-
-        if (error.code === 'auth/invalid-email') {
-          console.log('That email address is invalid!');
-        }
-
-        console.error(error);
       });
   };
 

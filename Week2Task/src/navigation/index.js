@@ -14,10 +14,11 @@ import {useSelector} from 'react-redux';
 import auth from '@react-native-firebase/auth';
 import messaging from '@react-native-firebase/messaging';
 import {PermissionHelper} from '../helpers';
+import {Alert} from 'react-native';
 
 const Stack = createNativeStackNavigator();
 
-const Navigation = () => {
+const Navigation = props => {
   const user = useSelector(state => state.user);
   const [loggedInUser, setLoggedInUser] = useState(
     user.data?.accessToken ? user.data : null,
@@ -36,18 +37,15 @@ const Navigation = () => {
 
     // Foreground Notifications
     const unsubscribe = messaging().onMessage(async remoteMessage => {
-      Alert.alert('New Notification', JSON.stringify(remoteMessage));
-      if (remoteMessage.data?.route == 'Register') {
-        console.log(remoteMessage.data);
-      }
+      Alert.alert(
+        remoteMessage.notification.title,
+        remoteMessage.notification.body,
+      );
     });
 
     // Background Notifications
     messaging().setBackgroundMessageHandler(async remoteMessage => {
       console.log('Background Notification', remoteMessage);
-      if (remoteMessage.data?.route == 'Register') {
-        console.log(remoteMessage.data);
-      }
     });
 
     return unsubscribe;

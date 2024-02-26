@@ -6,14 +6,15 @@ import {
   ScrollView,
   Alert,
 } from 'react-native';
-import React, {useRef, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import styles from './styles';
 import {useDispatch} from 'react-redux';
 import {request} from '@redux/features/user/UserSlice';
 import {LOGIN_URL} from '@constants';
 import {useSelector} from 'react-redux';
-import {FirebaseAuthHelper} from '../../helpers';
+import {PermissionHelper, FirebaseAuthHelper} from '@helpers';
+import messaging from '@react-native-firebase/messaging';
 
 const LoginScreen = ({navigation}) => {
   const [errorMessage, setErrorMessage] = useState('');
@@ -42,6 +43,17 @@ const LoginScreen = ({navigation}) => {
   const handleForgotPassword = () => {
     FirebaseAuthHelper.forgotPassword(username);
   };
+
+  useEffect(() => {
+    // Foreground Notifications
+    const unsubscribe = messaging().onMessage(async remoteMessage => {
+      if (remoteMessage.data?.route == 'Register') {
+        navigation.navigate(remoteMessage.data.route);
+      }
+    });
+
+    return unsubscribe;
+  }, []);
 
   return (
     <ScrollView style={styles.container}>

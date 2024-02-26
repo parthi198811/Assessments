@@ -3,7 +3,6 @@ import {PermissionsAndroid} from 'react-native';
 
 class PermissionHelper {
   getDeviceToken = async () => {
-    await messaging().registerDeviceForRemoteMessages();
     return await messaging().getToken();
   };
 
