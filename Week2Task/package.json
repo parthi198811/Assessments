@@ -29,6 +29,7 @@
     "formik": "^2.4.5",
     "i18next": "^23.10.0",
     "react": "18.2.0",
+    "react-hook-form": "^7.50.1",
     "react-i18next": "^14.0.5",
     "react-native": "0.73.3",
     "react-native-animatable": "^1.4.0",

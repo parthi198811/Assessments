@@ -43,7 +43,7 @@
 		<true/>
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
+	<string/>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Profile Image</string>
 	<key>UIAppFonts</key>
@@ -67,6 +67,10 @@
 		<string>Octicons.ttf</string>
 		<string>Zocial.ttf</string>
 		<string>Fontisto.ttf</string>
+		<string>KodeMono-Bold.ttf</string>
+		<string>KodeMono-Medium.ttf</string>
+		<string>KodeMono-Regular.ttf</string>
+		<string>KodeMono-SemiBold.ttf</string>
 	</array>
 	<key>UIBackgroundModes</key>
 	<array>

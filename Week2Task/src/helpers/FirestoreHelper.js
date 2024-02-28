@@ -31,7 +31,7 @@ class FirestoreHelper {
   };
 
   getRealtimeUsers = setUsers => {
-    firestore()
+    let unsubscribe = firestore()
       .collection(USER_COLLECTION)
       .orderBy('name', 'asc')
       .onSnapshot(users => {
@@ -39,6 +39,8 @@ class FirestoreHelper {
         users.forEach(user => data.push({id: user.id, ...user.data()}));
         setUsers(data);
       });
+
+    return unsubscribe;
   };
 
   getUser = async id => {
@@ -74,7 +76,7 @@ class FirestoreHelper {
     let collectionKey = [srcUser, destUser];
     collectionKey.sort();
 
-    firestore()
+    let unsubscribe = firestore()
       .collection(collectionKey.join('-'))
       .orderBy('time', 'asc')
       .onSnapshot(messages => {
@@ -84,6 +86,8 @@ class FirestoreHelper {
         );
         setMessages(data);
       });
+
+    return unsubscribe;
   };
 
   sendMessage = async (srcUser, destUser, message) => {

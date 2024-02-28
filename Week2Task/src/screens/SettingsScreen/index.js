@@ -31,7 +31,7 @@ const SettingsScreen = () => {
   return (
     <View style={{flex: 1}}>
       <View style={{borderWidth: 1, borderRadius: 5, margin: 10, padding: 10}}>
-        <Text>{t('welcome')}</Text>
+        <Text style={{fontFamily: 'KodeMono-Bold'}}>{t('welcome')}</Text>
         <View style={{flexDirection: 'row'}}>
           <Button
             title="EN"

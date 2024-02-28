@@ -11,10 +11,14 @@
 		13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.mm */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		1CC61601708B4911A5477C25 /* KodeMono-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FBD1D374CD624F398558E370 /* KodeMono-SemiBold.ttf */; };
+		48C1992254DF4F149DAF2E5A /* KodeMono-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2F738418D3B2468CB4D203EA /* KodeMono-Regular.ttf */; };
+		66B7B512A3DF4A618152D82E /* KodeMono-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4829A35E14584EB79CC110EA /* KodeMono-Medium.ttf */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		A2312BA12B817BA100225390 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A2312BA02B817BA100225390 /* GoogleService-Info.plist */; };
 		C0F84EABC122FA444D8AE82D /* Pods_Week2Task_Week2TaskTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED913278CA8BF3CB6ED51E1E /* Pods_Week2Task_Week2TaskTests.framework */; };
 		D060847E049055D9097AB7A1 /* Pods_Week2Task.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE08C92F1CF23A99F27A7E5A /* Pods_Week2Task.framework */; };
+		DDFF960DF6274D3EA195F128 /* KodeMono-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B92276701AB1471ABF6EB247 /* KodeMono-Bold.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,7 +41,9 @@
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Week2Task/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Week2Task/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Week2Task/main.m; sourceTree = "<group>"; };
+		2F738418D3B2468CB4D203EA /* KodeMono-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "KodeMono-Regular.ttf"; path = "../assets/fonts/KodeMono-Regular.ttf"; sourceTree = "<group>"; };
 		3B4392A12AC88292D35C810B /* Pods-Week2Task.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Week2Task.debug.xcconfig"; path = "Target Support Files/Pods-Week2Task/Pods-Week2Task.debug.xcconfig"; sourceTree = "<group>"; };
+		4829A35E14584EB79CC110EA /* KodeMono-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "KodeMono-Medium.ttf"; path = "../assets/fonts/KodeMono-Medium.ttf"; sourceTree = "<group>"; };
 		5709B34CF0A7D63546082F79 /* Pods-Week2Task.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Week2Task.release.xcconfig"; path = "Target Support Files/Pods-Week2Task/Pods-Week2Task.release.xcconfig"; sourceTree = "<group>"; };
 		5B7EB9410499542E8C5724F5 /* Pods-Week2Task-Week2TaskTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Week2Task-Week2TaskTests.debug.xcconfig"; path = "Target Support Files/Pods-Week2Task-Week2TaskTests/Pods-Week2Task-Week2TaskTests.debug.xcconfig"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = Week2Task/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -63,8 +69,10 @@
 		A22DE5692B7144FC0097A918 /* MaterialIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = MaterialIcons.ttf; sourceTree = "<group>"; };
 		A2312BA02B817BA100225390 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "Week2Task/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A2D217632B893C5600207FD8 /* Week2Task.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = Week2Task.entitlements; path = Week2Task/Week2Task.entitlements; sourceTree = "<group>"; };
+		B92276701AB1471ABF6EB247 /* KodeMono-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "KodeMono-Bold.ttf"; path = "../assets/fonts/KodeMono-Bold.ttf"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED913278CA8BF3CB6ED51E1E /* Pods_Week2Task_Week2TaskTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Week2Task_Week2TaskTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FBD1D374CD624F398558E370 /* KodeMono-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "KodeMono-SemiBold.ttf"; path = "../assets/fonts/KodeMono-SemiBold.ttf"; sourceTree = "<group>"; };
 		FE08C92F1CF23A99F27A7E5A /* Pods_Week2Task.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Week2Task.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -147,6 +155,7 @@
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				BBD78D7AC51CEA395F1C20DB /* Pods */,
+				E1C45B9715C0498B9EDBD597 /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -198,6 +207,18 @@
 				89C6BE57DB24E9ADA2F236DE /* Pods-Week2Task-Week2TaskTests.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		E1C45B9715C0498B9EDBD597 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				B92276701AB1471ABF6EB247 /* KodeMono-Bold.ttf */,
+				4829A35E14584EB79CC110EA /* KodeMono-Medium.ttf */,
+				2F738418D3B2468CB4D203EA /* KodeMono-Regular.ttf */,
+				FBD1D374CD624F398558E370 /* KodeMono-SemiBold.ttf */,
+			);
+			name = Resources;
+			path = "";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -298,6 +319,10 @@
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				A2312BA12B817BA100225390 /* GoogleService-Info.plist in Resources */,
+				DDFF960DF6274D3EA195F128 /* KodeMono-Bold.ttf in Resources */,
+				66B7B512A3DF4A618152D82E /* KodeMono-Medium.ttf in Resources */,
+				48C1992254DF4F149DAF2E5A /* KodeMono-Regular.ttf in Resources */,
+				1CC61601708B4911A5477C25 /* KodeMono-SemiBold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
