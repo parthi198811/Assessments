@@ -112,7 +112,10 @@ const RegisterScreen = ({navigation}) => {
             password: '',
             confirmPassword: '',
           }}
-          onSubmit={values => console.log(values)}>
+          onSubmit={values => {
+            FirebaseAuthHelper.signup(values.email, values.password);
+            FirestoreHelper.addUserObject(values);
+          }}>
           {({handleChange, handleSubmit, values}) => (
             <View style={styles.registerContainer}>
               <View style={styles.headerContainer}>
