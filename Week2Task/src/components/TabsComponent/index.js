@@ -4,10 +4,16 @@ import IconFA5 from 'react-native-vector-icons/dist/FontAwesome5';
 import IconFA6 from 'react-native-vector-icons/dist/FontAwesome6';
 import IconM from 'react-native-vector-icons/dist/MaterialCommunityIcons';
 import IconI from 'react-native-vector-icons/dist/Ionicons';
-import {ProductsScreen, ProfileScreen, CartScreen, TaskScreen} from '@screens';
+import {
+  ProductsScreen,
+  ProfileScreen,
+  CartScreen,
+  TaskScreen,
+  SettingsScreen,
+  UsersScreen,
+} from '@screens';
 import {BASE_COLOR} from '@constants';
 import {useSelector} from 'react-redux';
-import {SettingsScreen} from '../../screens';
 
 const Tab = createBottomTabNavigator();
 
@@ -53,6 +59,16 @@ const DashboardTabs = () => {
           headerShown: false,
           tabBarIcon: ({color}) => (
             <IconFA5 name="tasks" color={color} size={35} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Users"
+        component={UsersScreen}
+        options={{
+          headerShown: false,
+          tabBarIcon: ({color}) => (
+            <IconFA5 name="users" color={color} size={30} />
           ),
         }}
       />

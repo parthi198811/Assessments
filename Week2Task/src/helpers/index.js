@@ -8,6 +8,7 @@ import PersistentMMKVHelper from './PersistentMMKVHelper';
 import LocationHelper from './LocationHelper';
 import FirebaseAuthHelper from './FirebaseAuthHelper';
 import PermissionHelper from './PermissionHelper';
+import FirestoreHelper from './FirestoreHelper';
 
 export {
   ApiHelper,
@@ -20,4 +21,5 @@ export {
   LocationHelper,
   FirebaseAuthHelper,
   PermissionHelper,
+  FirestoreHelper,
 };

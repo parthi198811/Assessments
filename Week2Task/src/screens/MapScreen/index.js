@@ -31,8 +31,6 @@ const MapScreen = () => {
           longitude: currentLocation
             ? currentLocation?.coords.longitude
             : -122.4324,
-          latitudeDelta: 0.015,
-          longitudeDelta: 0.0121,
         }}>
         <Marker
           title="Test"

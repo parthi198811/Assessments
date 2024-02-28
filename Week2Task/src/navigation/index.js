@@ -7,13 +7,15 @@ import {
   ProductsScreen,
   ProfileScreen,
   TaskScreen,
+  CartScreen,
+  ChatScreen,
+  UsersScreen,
 } from '@screens';
 import {UserContextProvider} from '@contexts/UserContext';
-import {CartScreen} from '../screens';
 import {useSelector} from 'react-redux';
 import auth from '@react-native-firebase/auth';
 import messaging from '@react-native-firebase/messaging';
-import {PermissionHelper} from '../helpers';
+import {PermissionHelper, FirestoreHelper} from '@helpers';
 import {Alert} from 'react-native';
 
 const Stack = createNativeStackNavigator();
@@ -55,7 +57,14 @@ const Navigation = props => {
     const subscriber = auth().onAuthStateChanged(user => {
       console.log('onAuthStateChanged');
       setFirebaseUser(user);
+
+      if (user?.email) {
+        FirestoreHelper.getUserByEmail(user.email).then(data => {
+          setLoggedInUser(data);
+        });
+      }
     });
+
     return subscriber;
   }, []);
 
@@ -92,6 +101,8 @@ const Navigation = props => {
         <Stack.Screen name="Cart" component={CartScreen} />
         <Stack.Screen name="Tasks" component={TaskScreen} />
         <Stack.Screen name="Profile" component={ProfileScreen} />
+        <Stack.Screen name="Users" component={UsersScreen} />
+        <Stack.Screen name="Chat" component={ChatScreen} />
       </Stack.Group>
     );
   };

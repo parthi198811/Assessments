@@ -33,10 +33,13 @@ class FirebaseAuthHelper {
         console.log('User account created & signed in!');
       })
       .catch(error => {
+        console.log(error);
         if (error.code === 'auth/email-already-in-use') {
           Alert.alert('That email address is already in use!');
         } else if (error.code === 'auth/invalid-email') {
           Alert.alert('That email address is invalid!');
+        } else if (error.code === 'auth/weak-password') {
+          Alert.alert('The given password is invalid!');
         } else {
           Alert.alert(error);
         }
@@ -72,9 +75,7 @@ class FirebaseAuthHelper {
       .sendPasswordResetEmail(email)
       .then(() => console.log('Password reset email sent'))
       .catch(error => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        // ..
+        console.log(error);
       });
   };
 }

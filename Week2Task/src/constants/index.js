@@ -25,6 +25,8 @@ export const PUT_USER_PROFILE_URL = '/Users';
 
 export const BUILD_NAME = 'com.itc.rnproject';
 
+export const USER_COLLECTION = 'Users';
+
 export const BANNER_IMAGE_URL =
   'https://global.hisense.com/dam/jcr:983144b1-36db-44ba-af97-7c15d37daa71/product-overview-hisense-smartphone-kv.h60-5g.jpg';
 

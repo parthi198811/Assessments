@@ -9,6 +9,8 @@ import SettingsScreen from './SettingsScreen';
 import StorageScreen from './StorageScreen';
 import ItemScreen from './ItemScreen';
 import MapScreen from './MapScreen';
+import UsersScreen from './UsersScreen';
+import ChatScreen from './ChatScreen';
 
 export {
   LoginScreen,
@@ -22,4 +24,6 @@ export {
   StorageScreen,
   ItemScreen,
   MapScreen,
+  UsersScreen,
+  ChatScreen,
 };

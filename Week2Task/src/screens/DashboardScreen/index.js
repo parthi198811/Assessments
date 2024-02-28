@@ -11,12 +11,14 @@ import {ItemScreen, StorageScreen} from '@screens';
 import {logout} from '@redux/features/user/UserSlice';
 import {MapScreen} from '..';
 import {FirebaseAuthHelper} from '../../helpers';
+import {useUserContext} from '../../contexts/UserContext';
 
 const Drawer = createDrawerNavigator();
 
 const DashboardScreen = () => {
   const dispatch = useDispatch();
   const user = useSelector(state => state.user);
+  const userEmail = useUserContext().state.loggedInUser?.email;
 
   const handleLogout = () => {
     Alert.alert('Are you sure you want to logout?', '', [
@@ -48,7 +50,12 @@ const DashboardScreen = () => {
         },
       }}
       drawerContent={props => (
-        <CustomDrawer {...props} name={user.data?.name} logout={handleLogout} />
+        <CustomDrawer
+          {...props}
+          // name={user.data?.email}
+          name={userEmail}
+          logout={handleLogout}
+        />
       )}>
       <Drawer.Screen
         name="DashboardTabs"

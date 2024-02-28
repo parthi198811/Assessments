@@ -12,14 +12,16 @@ import {useDispatch, useSelector} from 'react-redux';
 import {request} from '@redux/features/user/UserSlice';
 import {REGISTER_URL} from '@constants';
 import {FirebaseAuthHelper} from '../../helpers';
+import FirestoreHelper from '../../helpers/FirestoreHelper';
 
 const RegisterScreen = ({navigation}) => {
   const [disabled, setDisabled] = useState(true);
   const [opacity, setOpacity] = useState(0.5);
 
   const [name, setName] = useState('');
+  const [gender, setGender] = useState('');
+  const [age, setAge] = useState('');
   const [email, setEmail] = useState('');
-  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [cpassword, setCPassword] = useState('');
 
@@ -29,14 +31,14 @@ const RegisterScreen = ({navigation}) => {
   const user = useSelector(state => state.user);
 
   useEffect(() => {
-    if (name && email && username && password && cpassword) {
+    if (name && gender && age && email && password && cpassword) {
       setDisabled(false);
       setOpacity(1);
     } else {
       setDisabled(true);
       setOpacity(0.5);
     }
-  }, [name, email, username, password, cpassword]);
+  }, [name, email, password, cpassword]);
 
   // useEffect(() => {
   //   if (user.data?.id) {
@@ -53,8 +55,17 @@ const RegisterScreen = ({navigation}) => {
   //   }
   // }, [user]);
 
-  const handleRegister = () => {
+  const handleRegister = async () => {
     FirebaseAuthHelper.signup(email, password);
+    const response = await FirestoreHelper.addUserObject({
+      name,
+      gender,
+      age,
+      email,
+    });
+    response
+      ? Alert.alert('User registered successfully.')
+      : Alert.alert('ERROR');
     // if (cpassword != '' && password !== cpassword) {
     //   setErrorMessage('Password and Confirm Password is not similar.');
     // } else {
@@ -96,6 +107,30 @@ const RegisterScreen = ({navigation}) => {
             <View style={styles.textContainer}>
               <View style={styles.labelcontainer}>
                 <Text style={styles.required}>*</Text>
+                <Text style={styles.label}>Gender</Text>
+              </View>
+              <TextInput
+                style={styles.textinput}
+                onChangeText={value => {
+                  setGender(value);
+                }}
+              />
+            </View>
+            <View style={styles.textContainer}>
+              <View style={styles.labelcontainer}>
+                <Text style={styles.required}>*</Text>
+                <Text style={styles.label}>Age</Text>
+              </View>
+              <TextInput
+                style={styles.textinput}
+                onChangeText={value => {
+                  setAge(value);
+                }}
+              />
+            </View>
+            <View style={styles.textContainer}>
+              <View style={styles.labelcontainer}>
+                <Text style={styles.required}>*</Text>
                 <Text style={styles.label}>Email</Text>
               </View>
               <TextInput
@@ -104,19 +139,6 @@ const RegisterScreen = ({navigation}) => {
                 autoCapitalize="none"
                 onChangeText={value => {
                   setEmail(value);
-                }}
-              />
-            </View>
-            <View style={styles.textContainer}>
-              <View style={styles.labelcontainer}>
-                <Text style={styles.required}>*</Text>
-                <Text style={styles.label}>Username</Text>
-              </View>
-              <TextInput
-                style={styles.textinput}
-                autoCapitalize="none"
-                onChangeText={value => {
-                  setUsername(value);
                 }}
               />
             </View>
