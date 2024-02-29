@@ -31,4 +31,11 @@
         android:name="com.google.android.geo.API_KEY"
         android:value="AIzaSyDvgZlaSkYDm7Vz2y8Ftw0A86paUMJeJ0A"/>
     </application>
+    <queries>
+      <intent>
+        <action android:name="android.intent.action.VIEW" />
+        <!-- If you don't know the MIME type in advance, set "mimeType" to "*/*". -->
+        <data android:mimeType="*/*" />
+      </intent>
+    </queries>
 </manifest>

@@ -1,5 +1,9 @@
 import firestore from '@react-native-firebase/firestore';
-import {MESSAGE_COLLECTION, USER_COLLECTION} from '../constants';
+import {
+  CHAT_COLLECTION,
+  MESSAGE_COLLECTION,
+  USER_COLLECTION,
+} from '../constants';
 
 class FirestoreHelper {
   addUserObject = async user => {
@@ -72,34 +76,19 @@ class FirestoreHelper {
     }
   };
 
-  getRealtimeMessages = (srcUser, destUser, setMessages) => {
-    let collectionKey = [srcUser, destUser];
-    collectionKey.sort();
-
-    let unsubscribe = firestore()
-      .collection(collectionKey.join('-'))
-      .orderBy('time', 'asc')
-      .onSnapshot(messages => {
-        let data = [];
-        messages.forEach(message =>
-          data.push({id: message.id, ...message.data()}),
-        );
-        setMessages(data);
-      });
-
-    return unsubscribe;
-  };
-
   sendMessage = async (srcUser, destUser, message) => {
     let collectionKey = [srcUser, destUser];
     collectionKey.sort();
 
     try {
       await firestore()
-        .collection(collectionKey.join('-'))
+        .collection(CHAT_COLLECTION)
+        .doc(collectionKey.join('-'))
+        .collection(MESSAGE_COLLECTION)
         .add({...message, time: new Date().getTime()});
       return true;
     } catch (e) {
+      console.log(e);
       return false;
     }
   };

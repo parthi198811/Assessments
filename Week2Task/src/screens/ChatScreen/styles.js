@@ -1,4 +1,4 @@
-import {StyleSheet} from 'react-native';
+import {Platform, StyleSheet} from 'react-native';
 import {BASE_COLOR} from '../../constants';
 
 const styles = StyleSheet.create({
@@ -12,8 +12,10 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 5,
     height: 40,
-    padding: 5,
-    backgroundColor: 'white',
+    paddingHorizontal: 5,
+    paddingVertical: Platform.OS == 'ios' ? 5 : 0,
+    flexDirection: 'row',
+    alignItems: 'center',
   },
   bottomContainer: {
     flexDirection: 'row',
@@ -30,8 +32,22 @@ const styles = StyleSheet.create({
     margin: 5,
     padding: 10,
     borderRadius: 10,
-    backgroundColor: 'white',
+    backgroundColor: '#eae2b7',
     alignSelf: 'flex-start',
+  },
+  sentDocument: {
+    borderWidth: 1,
+    borderRadius: 5,
+    padding: 5,
+    borderColor: 'rgba(0, 0, 0, 0.08)',
+    backgroundColor: 'rgba(0, 0, 0, 0.08)',
+  },
+  receiveDocument: {
+    borderWidth: 1,
+    borderRadius: 5,
+    padding: 5,
+    borderColor: 'rgba(0, 0, 0, 0.08)',
+    backgroundColor: 'rgba(0, 0, 0, 0.08)',
   },
   text: {
     fontSize: 15,
@@ -40,6 +56,7 @@ const styles = StyleSheet.create({
     margin: 2,
     fontSize: 12,
     color: 'grey',
+    alignSelf: 'flex-end',
   },
 });
 

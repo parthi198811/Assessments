@@ -30,6 +30,7 @@ const styles = StyleSheet.create({
   buttonContainer: {
     flexDirection: 'row',
     justifyContent: 'space-evenly',
+    alignItems: 'center',
   },
 });
 

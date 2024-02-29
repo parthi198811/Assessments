@@ -1,36 +1,47 @@
 import {
+  ActivityIndicator,
+  Image,
   ScrollView,
   Text,
   TextInput,
   TouchableOpacity,
   View,
 } from 'react-native';
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useRef, useState} from 'react';
 import styles from './styles';
+import IconE from 'react-native-vector-icons/dist/Entypo';
 import IconM from 'react-native-vector-icons/dist/MaterialCommunityIcons';
+import IconF from 'react-native-vector-icons/dist/FontAwesome5';
 import {FirestoreHelper} from '@helpers';
 import {useUserContext} from '../../contexts/UserContext';
+import useRealtimeChats from '../../hooks/useRealtimeChats';
+import DocumentPicker from 'react-native-document-picker';
+import {FirebaseStorageHelper} from '../../helpers';
+import FileViewer from 'react-native-file-viewer';
+import MessageView from './MessageView';
 
 const ChatScreen = ({route}) => {
   const destinationUser = route.params.item;
   const loggedInUser = useUserContext().state.loggedInUser;
 
   const [message, setMessage] = useState('');
-  const [messages, setMessages] = useState([]);
+  const [attachment, setAttachment] = useState(null);
+
+  const [loading, setLoading] = useState(false);
+  const [localCopyFile, setLocalCopyFile] = useState('');
 
   const scrollViewRef = useRef(null);
+  const {results} = useRealtimeChats(loggedInUser?.id, destinationUser.id, {
+    field: 'time',
+    type: 'asc',
+  });
 
-  useEffect(() => {
-    FirestoreHelper.getRealtimeMessages(
-      loggedInUser?.id,
-      destinationUser.id,
-      setMessages,
-    );
-  }, []);
+  const messages = results;
 
   const sendMessage = () => {
     if (loggedInUser) {
       const msgObject = {
+        ...attachment,
         text: message,
         sentBy: loggedInUser.id,
       };
@@ -40,6 +51,7 @@ const ChatScreen = ({route}) => {
         msgObject,
       );
       setMessage('');
+      setAttachment(null);
     }
   };
 
@@ -58,31 +70,67 @@ const ChatScreen = ({route}) => {
             {messages &&
               messages.map(message => {
                 return (
-                  <View
-                    style={
-                      message.sentBy == loggedInUser.id
-                        ? styles.sentContainer
-                        : styles.receiveContainer
-                    }>
-                    <Text style={styles.text}>{message.text}</Text>
-                    <Text style={styles.time}>
-                      {new Date(message.time).toLocaleString()}
-                    </Text>
-                  </View>
+                  <MessageView
+                    message={message}
+                    loggedInUserId={loggedInUser?.id}
+                  />
                 );
               })}
           </ScrollView>
         </View>
         <View style={styles.bottomContainer}>
-          <TextInput
-            style={styles.textInput}
-            value={message}
-            onChangeText={value => {
-              setMessage(value);
-            }}
-          />
+          <View style={styles.textInput}>
+            <TextInput
+              style={{flex: 1}}
+              value={message}
+              multiline={true}
+              onChangeText={value => {
+                setMessage(value);
+              }}
+            />
+            {loading ? (
+              <ActivityIndicator />
+            ) : attachment ? (
+              <TouchableOpacity
+                onPress={async () => {
+                  await FileViewer.open(localCopyFile);
+                }}>
+                <IconF name="file-alt" color={'#000080'} size={25} />
+              </TouchableOpacity>
+            ) : (
+              <TouchableOpacity
+                onPress={async () => {
+                  setLoading(true);
+                  try {
+                    const pickerResult = await DocumentPicker.pickSingle({
+                      presentationStyle: 'formSheet',
+                      copyTo: 'cachesDirectory',
+                    });
+
+                    setLocalCopyFile(pickerResult.fileCopyUri);
+
+                    const file = await FirebaseStorageHelper.uploadFile(
+                      pickerResult.fileCopyUri,
+                      pickerResult.name,
+                    );
+
+                    setLoading(false);
+
+                    setAttachment({
+                      name: file.name,
+                      url: file.url,
+                      type: pickerResult.type,
+                    });
+                  } catch (e) {
+                    handleError(e);
+                  }
+                }}>
+                <IconE name="attachment" color={'grey'} size={25} />
+              </TouchableOpacity>
+            )}
+          </View>
           <TouchableOpacity onPress={sendMessage}>
-            <IconM name="send-circle-outline" color={'black'} size={50} />
+            <IconM name="send-circle-outline" color={'#1c1c84'} size={50} />
           </TouchableOpacity>
         </View>
       </View>

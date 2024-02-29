@@ -9,6 +9,7 @@ import LocationHelper from './LocationHelper';
 import FirebaseAuthHelper from './FirebaseAuthHelper';
 import PermissionHelper from './PermissionHelper';
 import FirestoreHelper from './FirestoreHelper';
+import FirebaseStorageHelper from './FirebaseStorageHelper';
 
 export {
   ApiHelper,
@@ -22,4 +23,5 @@ export {
   FirebaseAuthHelper,
   PermissionHelper,
   FirestoreHelper,
+  FirebaseStorageHelper,
 };
